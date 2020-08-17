@@ -3791,3 +3791,35 @@ Processing by ActiveStorage::DiskController#show as JPEG
 Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 459)
 
 
+Started GET "/users/3" for ::1 at 2020-08-17 18:11:30 -0500
+  [1m[35m (12.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (11.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (10.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 383.8ms | Allocations: 26716)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 871ms (Views: 703.8ms | ActiveRecord: 20.3ms | Allocations: 58144)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--de702584b684a861806320929d0d108f6772c771/42613.jpg" for ::1 at 2020-08-17 18:11:32 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--de702584b684a861806320929d0d108f6772c771", "filename"=>"42613"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[36m  Disk Storage (144.1ms) [0m[34mGenerated URL for file at key: 6j8ez04knpkti4b8bpox40pzugc7 (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhObW80Wlhvd05HdHVjR3QwYVRSaU9HSndiM2cwTUhCNmRXZGpOd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMTdUMjM6MTY6MzIuNjM0WiIsInB1ciI6ImJsb2Jfa2V5In19--57b577684a51a096d215434840a2aa824ad8e3c2/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhObW80Wlhvd05HdHVjR3QwYVRSaU9HSndiM2cwTUhCNmRXZGpOd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMTdUMjM6MTY6MzIuNjM0WiIsInB1ciI6ImJsb2Jfa2V5In19--57b577684a51a096d215434840a2aa824ad8e3c2/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg
+Completed 302 Found in 150ms (ActiveRecord: 0.2ms | Allocations: 5226)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhObW80Wlhvd05HdHVjR3QwYVRSaU9HSndiM2cwTUhCNmRXZGpOd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMTdUMjM6MTY6MzIuNjM0WiIsInB1ciI6ImJsb2Jfa2V5In19--57b577684a51a096d215434840a2aa824ad8e3c2/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg" for ::1 at 2020-08-17 18:11:32 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"42613.jpg\"; filename*=UTF-8''42613.jpg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhObW80Wlhvd05HdHVjR3QwYVRSaU9HSndiM2cwTUhCNmRXZGpOd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMTdUMjM6MTY6MzIuNjM0WiIsInB1ciI6ImJsb2Jfa2V5In19--57b577684a51a096d215434840a2aa824ad8e3c2", "filename"=>"42613"}
+Completed 200 OK in 3ms (ActiveRecord: 0.0ms | Allocations: 461)
+
+
