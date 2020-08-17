@@ -1,0 +1,13 @@
+<%= form_for @user do |f|%>
+    <%= f.label "Profile Photo" %>
+    <%= f.file_field :avatar %><br>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :age %>
+    <%= f.text_field :age %><br>
+    <%= f.label :skill_level %>
+    <%= f.text_field :skill_level %><br>
+    <%= f.label :address %>
+    <%= f.text_area :address, size: "15x5"%><br>
+    <%= f.submit %>
+<% end %>

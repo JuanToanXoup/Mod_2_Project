@@ -1,0 +1,12 @@
+<% if @user.avatar.attached? %>
+    <div style="width:500px;"> 
+    <image src="<%=(url_for(@user.avatar))%>" style="max-width:100%;" /> 
+    </div>
+<%end%>
+
+<h1><%= @user.name %></h1>
+<ul>
+<li><%= @user.age %><br>
+<li><%= @user.skill_level %><br>
+<li><%= @user.address %><br>
+</ul>
