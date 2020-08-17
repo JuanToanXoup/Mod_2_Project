@@ -1,5 +1,5 @@
 <% if @user.avatar.attached? %>
-    <div style="width:500px;"> 
+    <div style="width:250px;"> 
     <image src="<%=(url_for(@user.avatar))%>" style="max-width:100%;" /> 
     </div>
 <%end%>
@@ -10,3 +10,4 @@
 <li><%= @user.skill_level %><br>
 <li><%= @user.address %><br>
 </ul>
+<%= button_to "Edit User", edit_user_path(@user), method: :get %>

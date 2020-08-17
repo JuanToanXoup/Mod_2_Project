@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   resources :trails
   resources :bikes
   resources :posts
+  
+  get '/login', to: 'auth#login'
+  post '/login', to: 'auth#verify'
+  get '/logout', to: 'auth#logout'
 
 end

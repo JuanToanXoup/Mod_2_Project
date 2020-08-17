@@ -38,10 +38,10 @@ class TrailsController < ApplicationController
 
     private 
     def find_trail
-        @trail = Trail.find_by(params[:id])
+        @trail = Trail.find(params[:id])
     end
 
     def trail_params
-        params.require(:trail).permit(:name,:location,:length,:duration,:difficulty, :trail_type, :trail_img)
+        params.require(:trail).permit(:name,:location,:length,:duration,:difficulty, :trail_type, :trail_pic)
     end
 end

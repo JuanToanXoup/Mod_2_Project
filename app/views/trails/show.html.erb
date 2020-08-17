@@ -1,3 +1,9 @@
+<% if @trail.trail_pic.attached? %>
+    <div style="width:500px;"> 
+    <image src="<%=(url_for(@trail.trail_pic))%>" style="max-width:100%;" /> 
+    </div>
+<%end%>
+
 <h1><%= @trail.name %></h1>
 <ul>
 <li><%= @trail.location %><br>
