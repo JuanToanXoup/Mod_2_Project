@@ -1,0 +1,10 @@
+<h1><%= form_for @post_comment do |f|%></h1>
+    <br><%= f.label :user_id %>
+    <%= f.collection_select(:user_id, User.all, :id, :name) %></br>
+    <br><%= f.label "Post" %>
+    <%= f.collection_select(:post_id, Post.all, :id, :title) %></br>
+    <br><%= f.label :description %>
+    <%= f.text_field :description %></br>
+    
+    <br><%= f.submit %>
+<% end %>
