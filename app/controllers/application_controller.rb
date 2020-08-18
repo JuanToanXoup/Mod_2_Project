@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_author
+    helper_method :current_user
 
-    def current_author
+    def current_user
       if !session[:user_id].nil? && !session[:user_id] != ""
-        @author = Author.find_by(id: session[:user_id])
+        @user = User.find_by(id: session[:user_id])
       else
         nil
       end
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       # else
       #   true
       # end
-      !!current_author
+      !!current_user
     end
   
     def authorized

@@ -1,4 +1,5 @@
 class TrailsController < ApplicationController
+    before_action :authorized
     def index
         @trails = Trail.all
     end

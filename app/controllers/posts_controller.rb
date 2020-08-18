@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+    before_action :authorized
     def index
         @posts = Post.all
         @past_posts = Post.all.select{|p| p.meetup_date < DateTime.now}

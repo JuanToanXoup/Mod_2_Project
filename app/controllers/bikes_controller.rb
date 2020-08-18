@@ -1,4 +1,5 @@
 class BikesController < ApplicationController
+    before_action :authorized
     def index
         @bikes = Bike.all
     end
