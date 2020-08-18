@@ -4,6 +4,11 @@ class AuthController < ApplicationController
     def login
       render :login
     end
+
+    def sign_up
+      @user = User.new
+      render :sign_up
+    end
   
     def verify
       @user = User.find_by(name: login_params[:name])
