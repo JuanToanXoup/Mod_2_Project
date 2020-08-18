@@ -12,9 +12,9 @@ class TrailsController < ApplicationController
         @trail = Trail.new(trail_params)
         if @trail.valid?
             @trail.save
-            redirect_to trail_path
+            redirect_to trail_path(@trail)
         else
-            flash[:message] = @trail.error.message
+            flash[:messages] = @trail.errors.messages
             redirect_to new_trail_path
         end
     end

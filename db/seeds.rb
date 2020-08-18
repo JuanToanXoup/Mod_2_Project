@@ -18,3 +18,5 @@ Bike.create(make: 'Lion', model: 'z-1000', bike_type: 'Cross-Country', frame_siz
 
 Trail.create(name: 'Bayou Trail', location: 'Houston', length: '12 miles', duration: '20 minutes', difficulty: 'Beginner', trail_type: 'off-road', trail_img: '')
 Trail.create(name: 'Buffalo Trail', location: 'Houston', length: '18 miles', duration: '40 minutes', difficulty: 'Intermediate', trail_type: 'mountain', trail_img: '')
+
+# Post.create(user_id: integer, trail_id: integer, title: string, description: text, meetup_date: datetime)
