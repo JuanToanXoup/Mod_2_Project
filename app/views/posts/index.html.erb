@@ -1,0 +1,21 @@
+
+<h1> Upcoming Posts </h1>
+<ul>
+<% @upcoming_posts.each do |post| %>
+    <br><li><%= link_to post.title, post_path(post) %> -- <%= post.user.name %></br>
+    <br><%= post.trail.name %>---<%= post.meetup_date %></br>
+<% end %>
+</ul>
+<br>
+<ul><%= link_to "New Post", new_post_path %></ul>
+<br>
+<h1> Past Posts </h1>
+<ul>
+<% @past_posts.each do |post| %>
+    <br><li><%= link_to post.title, post_path(post) %> -- <%= post.user.name %></br>
+    <br><%= post.trail.name %>---<%= post.meetup_date %></br>
+
+<% end %>
+</ul>
+<br>
+<br>

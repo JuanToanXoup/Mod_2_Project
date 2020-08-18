@@ -13,7 +13,7 @@ class BikesController < ApplicationController
             @bike.save
             redirect_to bike_path(@bike)
         else
-            flash[:message] = @bike.error.message
+            flash[:messages] = @bike.errors.messages
             redirect_to '/bike/new'
     end
     
