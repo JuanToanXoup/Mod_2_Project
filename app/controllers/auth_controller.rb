@@ -11,13 +11,13 @@ class AuthController < ApplicationController
     end
   
     def verify
-      @user = User.find_by(name: login_params[:name])
+      @user = User.find_by(username: login_params[:username])
   
-      if @user && @user.authenticate(login_params[:password])
+      if @user && @user.password_digest == login_params[:password]
         session[:user_id] = @user.id
         redirect_to user_path(@user)
       else
-        flash[:error] = 'Login failed..'
+        flash[:error] = 'Login failed. Please enter a valid Username and Password or Create a New Account.'
         redirect_to login_path
       end
     end
@@ -29,7 +29,7 @@ class AuthController < ApplicationController
   
     private
     def login_params
-      params.require(:login).permit(:name,:password)
+      params.require(:login).permit(:username,:password)
     end
   
   end

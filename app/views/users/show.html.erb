@@ -4,10 +4,11 @@
     </div>
 <%end%>
 
-<h1><%= @user.name %></h1>
+<h1>Name: <%= @user.name %></h1>
 <ul>
-<li><%= @user.age %><br>
-<li><%= @user.skill_level %><br>
-<li><%= @user.address %><br>
+<li>Username: <%= @user.username %><br>
+<li>Age: <%= @user.age %><br>
+<li>Skill Level: <%= @user.skill_level %><br>
+<li>Address: <%= @user.address %><br>
 </ul>
 <%= button_to "Edit User", edit_user_path(@user), method: :get %>

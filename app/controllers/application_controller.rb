@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
   
     def logged_in?
-      # if current_author.nil?
+      # if current_user.nil?
       #   false
       # else
       #   true
