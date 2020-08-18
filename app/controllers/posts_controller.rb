@@ -2,8 +2,8 @@ class PostsController < ApplicationController
     before_action :authorized
     def index
         @posts = Post.all
-        @past_posts = Post.all.select{|p| p.meetup_date < DateTime.now}
-        @upcoming_posts = Post.all.select{|p| p.meetup_date > DateTime.now}
+        @upcoming_posts = @posts.upcoming_post
+        @past_posts = @posts.past_post 
     end
 
     def new
@@ -11,14 +11,12 @@ class PostsController < ApplicationController
     end
 
     def create
-        
         @post = Post.new(post_params)
+        @post.user_id = current_user.id
         if @post.valid?
-            
             @post.save
             redirect_to post_path(@post)
         else
-            
             flash[:messages] = @post.errors.messages
             redirect_to new_post_path
         end

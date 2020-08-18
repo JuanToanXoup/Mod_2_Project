@@ -4,18 +4,16 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
-    def new
-        @user = User.new
-    end
-
     def create
         @user = User.new(user_params)
         if @user.valid?
+            @rand = rand(15)
+            @user.avatar.attach(io: File.open("app/assets/images/avatars/#{@rand}.jpg"),filename: "#{@rand}.jpg", content_type: 'image/jpg')
             @user.save
             redirect_to user_path(@user)
         else
-            flash[:messages] = @user.errors.messages
-            redirect_to new_user_path
+            flash[:error] = @user.errors.messages
+            redirect_to sign_up_path
         end
     end
 
@@ -42,6 +40,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:name,:age,:skill_level,:address,:avatar)
+        params.require(:user).permit(:username,:password_digest,:name,:age,:skill_level,:address,:avatar)
     end
 end

@@ -1,13 +1,16 @@
+<% if flash[:error] %>
+    <h4 style="color: red;">
+      Alert: <%= flash[:error] %>
+    </h4>
+<% end %>
 <%= form_for @user do |f|%>
-    <%= f.label "Profile Photo" %>
-    <%= f.file_field :avatar %><br>
-    <%= f.label :name %>
+    <%= f.label "Full Name" %>
     <%= f.text_field :name %><br>
+    <%= f.label :username %>
+    <%= f.text_field :username %><br>
+    <%= f.label "New Password" %>
+    <%= f.text_field :password_digest %><br>
     <%= f.label :age %>
     <%= f.text_field :age %><br>
-    <%= f.label :skill_level %>
-    <%= f.text_field :skill_level %><br>
-    <%= f.label :address %>
-    <%= f.text_area :address, size: "15x5"%><br>
     <%= f.submit %>
 <% end %>

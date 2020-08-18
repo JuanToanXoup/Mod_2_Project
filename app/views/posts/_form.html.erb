@@ -1,6 +1,9 @@
+<% if flash[:errors] %>
+  <% flash[:errors].keys.each do |key| %>
+    <h4 style="color: red;"> Error: <%= "#{key} #{flash[:errors][key][0]}" %> </h4>
+  <% end %>
+<% end %>
 <h1><%= form_for @post do |f|%></h1>
-    <br><%= f.label :user_id %>
-    <%= f.collection_select(:user_id, User.all, :id, :name) %></br>
     <br><%= f.label "Trail" %>
     <%= f.collection_select(:trail_id, Trail.all, :id, :name) %></br>
     <br><%= f.label :title %>
