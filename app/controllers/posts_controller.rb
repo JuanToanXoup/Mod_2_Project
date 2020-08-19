@@ -46,6 +46,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:user_id, :trail_id, :title, :description, :meetup_date)
+        params.require(:post).permit(:trail_id, :title, :description, :meetup_date)
     end
 end

@@ -10,7 +10,11 @@
   </head>
 
   <body>
-    <%= link_to "Log Out", logout_path %> <%= link_to "Create a New Account", sign_up_path %> <%= link_to "All Post", posts_path %>
+  <% if controller_name == 'auth' && action_name == 'login' %>
+    <%= link_to "Create a New Account", sign_up_path %> 
+  <% else %>
+    <%= link_to "Log Out", logout_path %> <%= link_to "All Post", posts_path %> <%= link_to "All Trails", trails_path %>
+  <% end %>
     <%= yield %>
   </body>
 </html>

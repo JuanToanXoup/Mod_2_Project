@@ -1,4 +1,6 @@
 <%= form_for @trail do |f|%>
+    <%= f.label "Trail Photo" %>
+    <%= f.file_field :trail_pic %><br>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
     <%= f.label :location %>

@@ -12256,3 +12256,1752 @@ Processing by PostsController#index as HTML
 Completed 200 OK in 362ms (Views: 227.9ms | ActiveRecord: 12.7ms | Allocations: 1950610)
 
 
+Started GET "/posts" for ::1 at 2020-08-18 14:53:38 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (6.0.3.2) lib/active_record/migration.rb:586:in `check_pending!'
+activerecord (6.0.3.2) lib/active_record/migration.rb:564:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.1.0) lib/puma/configuration.rb:228:in `call'
+puma (4.1.0) lib/puma/server.rb:664:in `handle_request'
+puma (4.1.0) lib/puma/server.rb:467:in `process_client'
+puma (4.1.0) lib/puma/server.rb:328:in `block in run'
+puma (4.1.0) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateComments (20200818190701)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818190701"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveDescriptionFromBikeComments (20200818191050)
+  [1m[35m (2.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "abike_comments" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "bike_id" integer DEFAULT NULL, "description" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "abike_comments" ("id","user_id","bike_id","description","created_at","updated_at")
+                     SELECT "id","user_id","bike_id","description","created_at","updated_at" FROM "bike_comments"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "bike_comments"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "bike_comments" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "bike_id" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "bike_comments" ("id","user_id","bike_id","created_at","updated_at")
+                     SELECT "id","user_id","bike_id","created_at","updated_at" FROM "abike_comments"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "abike_comments"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191050"]]
+  [1m[35m (6.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveDescriptionFromPostComments (20200818191304)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "apost_comments" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "post_id" integer DEFAULT NULL, "description" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "apost_comments" ("id","user_id","post_id","description","created_at","updated_at")
+                     SELECT "id","user_id","post_id","description","created_at","updated_at" FROM "post_comments"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "post_comments"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "post_comments" ("id" integer NOT NULL PRIMARY KEY, "user_id" integer DEFAULT NULL, "post_id" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "post_comments" ("id","user_id","post_id","created_at","updated_at")
+                     SELECT "id","user_id","post_id","created_at","updated_at" FROM "apost_comments"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "apost_comments"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (1.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191304"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to RemoveDescriptionFromTrailComments (20200818191436)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mprimary::SchemaMigration Create (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191436"]]
+  [1m[35m (7.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCommentIdToBikeComments (20200818191544)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (5.5ms)[0m  [1m[35mALTER TABLE "bike_comments" ADD "comment_id" integer[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191544"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCommentIdToPostComments (20200818191628)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "post_comments" ADD "comment_id" integer[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191628"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddCommentIdToTrailComments (20200818191710)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "trail_comments" ADD "comment_id" integer[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200818191710"]]
+  [1m[35m (12.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/posts" for ::1 at 2020-08-18 14:54:46 -0500
+  [1m[35m (7.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 85.0ms | Allocations: 15364)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 736ms (Views: 558.9ms | ActiveRecord: 6.1ms | Allocations: 70788)
+
+
+Started GET "/logout" for ::1 at 2020-08-18 14:54:51 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 467)
+
+
+Started GET "/login" for ::1 at 2020-08-18 14:54:51 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 12.3ms | Allocations: 3637)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 39ms (Views: 36.6ms | ActiveRecord: 0.0ms | Allocations: 8170)
+
+
+Started POST "/login" for ::1 at 2020-08-18 14:54:56 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"Na1IZtTGgxJvsUjh7McJbFRZXuXbUQbKoLEO43unV1a6kfgZF37SjSJ8L0uLa0LkskVc8p9A4Pjk3lNSBzL4Eg==", "login"=>{"username"=>"a;dlkfajdf", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "a;dlkfajdf"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/login
+Completed 200 OK in 11ms (ActiveRecord: 0.5ms | Allocations: 1279)
+
+
+Started GET "/login" for ::1 at 2020-08-18 14:54:56 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 10.4ms | Allocations: 1939)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 70ms (Views: 67.3ms | ActiveRecord: 0.0ms | Allocations: 5897)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 14:55:06 -0500
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 18.5ms | Allocations: 1675)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 49ms (Views: 38.4ms | ActiveRecord: 0.0ms | Allocations: 5883)
+
+
+Started POST "/users" for ::1 at 2020-08-18 14:55:21 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"Thpy7eUyA03QpBAZJc/IsmcVivRmPFDuq3TsYEyChBkM6OkCHUUkZxOq4KXfVm6JiNkq/ABpRQOXdnF26qhMcw==", "user"=>{"name"=>"John Doan", "username"=>"NewUser7", "password_digest"=>"[FILTERED]", "age"=>"30"}, "commit"=>"Create User"}
+Redirected to http://localhost:3000/login
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 554)
+
+
+Started GET "/login" for ::1 at 2020-08-18 14:55:21 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 19.0ms | ActiveRecord: 0.0ms | Allocations: 5884)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 14:55:34 -0500
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1122)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 26.1ms | ActiveRecord: 0.0ms | Allocations: 5176)
+
+
+Started POST "/users" for ::1 at 2020-08-18 14:55:50 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"DMVa4G6YKIyp4ZLyhWpXv0wrNq7tIMATnm5OPIYWRyRON8EPlu8PpmrvYk5/8/GEo+eWpot11f6ibNMqIDyPTg==", "user"=>{"name"=>"John Doan", "username"=>"UserName 8", "password_digest"=>"[FILTERED]", "age"=>"30"}, "commit"=>"Create User"}
+Redirected to http://localhost:3000/login
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 497)
+
+
+Started GET "/login" for ::1 at 2020-08-18 14:55:50 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 1.6ms | Allocations: 1937)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 18ms (Views: 16.7ms | ActiveRecord: 0.0ms | Allocations: 5892)
+
+
+Started POST "/login" for ::1 at 2020-08-18 14:55:56 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"ejvZTJRgK5s1UhGpVk0+pTYGdS++HPQJHo2E+OuNO3RWrEVp+MnwuzZMSty2/iYzSrQWls3249shiLmGscm5Hg==", "login"=>{"username"=>"Juantoanxoup", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Juantoanxoup"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/users/2
+Completed 200 OK in 4ms (ActiveRecord: 0.3ms | Allocations: 1136)
+
+
+Started GET "/users/2" for ::1 at 2020-08-18 14:55:56 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:39:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 288.8ms | Allocations: 21774)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 316ms (Views: 286.6ms | ActiveRecord: 20.3ms | Allocations: 27526)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115/IMG_1216.jpeg" for ::1 at 2020-08-18 14:55:56 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115", "filename"=>"IMG_1216"}
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (3.2ms) [0m[34mGenerated URL for file at key: xla45a36o73bxkwhdbsuhq3z8diw (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MDA6NTYuODY3WiIsInB1ciI6ImJsb2Jfa2V5In19--063c15ec464ee07f4f1668ae53ceb5e4ee86c8c0/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MDA6NTYuODY3WiIsInB1ciI6ImJsb2Jfa2V5In19--063c15ec464ee07f4f1668ae53ceb5e4ee86c8c0/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg
+Completed 302 Found in 13ms (ActiveRecord: 0.4ms | Allocations: 2263)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MDA6NTYuODY3WiIsInB1ciI6ImJsb2Jfa2V5In19--063c15ec464ee07f4f1668ae53ceb5e4ee86c8c0/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg" for ::1 at 2020-08-18 14:55:56 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"IMG_1216.jpeg\"; filename*=UTF-8''IMG_1216.jpeg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MDA6NTYuODY3WiIsInB1ciI6ImJsb2Jfa2V5In19--063c15ec464ee07f4f1668ae53ceb5e4ee86c8c0", "filename"=>"IMG_1216"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 501)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 14:56:00 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.6ms | Allocations: 1511)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 42ms (Views: 28.3ms | ActiveRecord: 1.2ms | Allocations: 7371)
+
+
+Started GET "/posts/new" for ::1 at 2020-08-18 14:56:04 -0500
+Processing by PostsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering posts/new.html.erb within layouts/application
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/posts/_form.html.erb:8
+  Rendered posts/_form.html.erb (Duration: 23.4ms | Allocations: 2694)
+  Rendered posts/new.html.erb within layouts/application (Duration: 28.1ms | Allocations: 3013)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 37.6ms | ActiveRecord: 0.7ms | Allocations: 7789)
+
+
+Started POST "/posts" for ::1 at 2020-08-18 14:56:21 -0500
+Processing by PostsController#create as HTML
+  Parameters: {"authenticity_token"=>"eZLGV5bwgZSUSaFykOMuBTuRMnAUx4kuzz0sB6T64yNVBVpy+llatJdX+gdwUDaTRyNRyWctnvzwOBF5/r5hSQ==", "post"=>{"trail_id"=>"1", "title"=>"New Bike Ride", "description"=>"Lets go for a ride", "meetup_date"=>"2020-08-22T14:56"}, "commit"=>"Create Post"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:16:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+  [1m[36mPost Create (6.0ms)[0m  [1m[32mINSERT INTO "posts" ("user_id", "trail_id", "title", "description", "created_at", "updated_at", "meetup_date") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["user_id", 2], ["trail_id", 1], ["title", "New Bike Ride"], ["description", "Lets go for a ride"], ["created_at", "2020-08-18 19:56:21.682896"], ["updated_at", "2020-08-18 19:56:21.682896"], ["meetup_date", "2020-08-22 14:56:00"]]
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:17:in `create'
+Redirected to http://localhost:3000/posts/2
+Completed 302 Found in 60ms (ActiveRecord: 8.7ms | Allocations: 5926)
+
+
+Started GET "/posts/2" for ::1 at 2020-08-18 14:56:21 -0500
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:45:in `find_post'
+  Rendering posts/show.html.erb within layouts/application
+  Rendered posts/show.html.erb within layouts/application (Duration: 8.8ms | Allocations: 218)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 28.6ms | ActiveRecord: 0.8ms | Allocations: 5649)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 14:56:28 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 17.9ms | Allocations: 2897)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 37.1ms | ActiveRecord: 1.2ms | Allocations: 8815)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 14:56:40 -0500
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1130)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 32.0ms | ActiveRecord: 0.0ms | Allocations: 5185)
+
+
+Started GET "/comments" for ::1 at 2020-08-18 14:57:45 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/comments"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.1.0) lib/puma/configuration.rb:228:in `call'
+puma (4.1.0) lib/puma/server.rb:664:in `handle_request'
+puma (4.1.0) lib/puma/server.rb:467:in `process_client'
+puma (4.1.0) lib/puma/server.rb:328:in `block in run'
+puma (4.1.0) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/login" for ::1 at 2020-08-18 14:58:26 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1900)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.0ms | Allocations: 6036)
+
+
+Started POST "/login" for ::1 at 2020-08-18 14:58:33 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"g3k7NC6vlubuzP59V+J+NQeSkXxTSsJQ2G7GVPTz5CGv7qcRQgZNxu3SpQi3UWajeyDyxSCg1YLna/sqrrdmSw==", "login"=>{"username"=>"NewUser7", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "NewUser7"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/login
+Completed 200 OK in 19ms (ActiveRecord: 1.0ms | Allocations: 8928)
+
+
+Started GET "/login" for ::1 at 2020-08-18 14:58:33 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 6.7ms | Allocations: 1937)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 25.7ms | ActiveRecord: 0.0ms | Allocations: 5900)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 15:02:12 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1201)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 57ms (Views: 13.4ms | ActiveRecord: 1.2ms | Allocations: 19048)
+
+
+Started POST "/users" for ::1 at 2020-08-18 15:02:28 -0500
+  
+ArgumentError (wrong number of arguments (given 5, expected 1..2)):
+  
+app/controllers/users_controller.rb:2:in `[]'
+app/controllers/users_controller.rb:2:in `<class:UsersController>'
+app/controllers/users_controller.rb:1:in `<main>'
+Started GET "/users" for ::1 at 2020-08-18 15:03:43 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:2
+  Rendered users/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1094)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 49ms (Views: 14.2ms | ActiveRecord: 1.7ms | Allocations: 19884)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 15:03:57 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 38.1ms | Allocations: 14896)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 83ms (Views: 53.3ms | ActiveRecord: 2.5ms | Allocations: 26941)
+
+
+Started GET "/logout" for ::1 at 2020-08-18 15:04:03 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 403)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:04:03 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1936)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 14ms (Views: 13.4ms | ActiveRecord: 0.0ms | Allocations: 6049)
+
+
+Started GET "/users" for ::1 at 2020-08-18 15:04:07 -0500
+Processing by UsersController#index as HTML
+Redirected to http://localhost:3000/login
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms | Allocations: 430)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:04:07 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1937)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.0ms | Allocations: 5887)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 15:04:13 -0500
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1180)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.0ms | Allocations: 5226)
+
+
+Started POST "/users" for ::1 at 2020-08-18 15:04:24 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"E8j+zDyYpZbsONFAbSBaeACNenR7wUbLvoNZHqCidlFROmUjxO+CvC82IfyXufxD70HafB2UUyaCgcQIBoi+Ow==", "user"=>{"name"=>"John Doan", "username"=>"UserName8", "password_digest"=>"[FILTERED]", "age"=>"30"}, "commit"=>"Create User"}
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "UserName8"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "UserName8"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (2.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at", "password_digest", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "John Doan"], ["age", 30], ["created_at", "2020-08-18 20:04:24.544488"], ["updated_at", "2020-08-18 20:04:24.544488"], ["password_digest", "admin"], ["username", "UserName8"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 9], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 9], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Blob Create (0.7ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "nzxzxjknq2ifkn40ya66pn98ycco"], ["filename", "3.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["byte_size", 36997], ["checksum", "qN5q747TLq8XJNwuv5+IfA=="], ["created_at", "2020-08-18 20:04:24.608654"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.9ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "avatar"], ["record_type", "User"], ["record_id", 9], ["blob_id", 6], ["created_at", "2020-08-18 20:04:24.615147"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Update (0.6ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2020-08-18 20:04:24.620512"], ["id", 9]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[36m  Disk Storage (6.3ms) [0m[32mUploaded file to key: nzxzxjknq2ifkn40ya66pn98ycco (checksum: qN5q747TLq8XJNwuv5+IfA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 5b741c34-eec1-4cfc-ac53-ab5c3464e412) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00007fea2848fcf0 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/6>>
+Redirected to http://localhost:3000/users/9
+Completed 302 Found in 180ms (ActiveRecord: 8.7ms | Allocations: 50290)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412] Performing ActiveStorage::AnalyzeJob (Job ID: 5b741c34-eec1-4cfc-ac53-ab5c3464e412) from Async(active_storage_analysis) enqueued at 2020-08-18T20:04:24Z with arguments: #<GlobalID:0x00007fea245d0438 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/6>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412] [36m  Disk Storage (0.4ms) [0m[34mDownloaded file from key: nzxzxjknq2ifkn40ya66pn98ycco[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412] Skipping image analysis because the mini_magick gem isn't installed
+Started GET "/users/9" for ::1 at 2020-08-18 15:04:24 -0500
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412]   [1m[36mActiveStorage::Blob Update (0.6ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 6]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412]   [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [5b741c34-eec1-4cfc-ac53-ab5c3464e412] Performed ActiveStorage::AnalyzeJob (Job ID: 5b741c34-eec1-4cfc-ac53-ab5c3464e412) from Async(active_storage_analysis) in 45.3ms
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"9"}
+Redirected to http://localhost:3000/login
+Filter chain halted as :authorized rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms | Allocations: 1691)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:04:24 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.1ms | Allocations: 1938)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.0ms | Allocations: 9879)
+
+
+Started GET "/sign_up" for ::1 at 2020-08-18 15:07:48 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by AuthController#sign_up as HTML
+  Rendering auth/sign_up.html.erb within layouts/application
+  Rendered auth/sign_up.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1190)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 76ms (Views: 13.4ms | ActiveRecord: 12.0ms | Allocations: 19023)
+
+
+Started POST "/users" for ::1 at 2020-08-18 15:07:58 -0500
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for UsersController):
+  
+actionpack (6.0.3.2) lib/abstract_controller/base.rb:131:in `process'
+actionview (6.0.3.2) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/cookies.rb:648:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.1.0) lib/puma/configuration.rb:228:in `call'
+puma (4.1.0) lib/puma/server.rb:664:in `handle_request'
+puma (4.1.0) lib/puma/server.rb:467:in `process_client'
+puma (4.1.0) lib/puma/server.rb:328:in `block in run'
+puma (4.1.0) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2020-08-18 15:10:14 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"C2Mf2p5juOAGnLB5s5gGyqV2OooDyl+IoGSFfEq3wEwn9IP/8spjwAWC6wxTKx5c2cRZM3AgSFqfYbgCEPNCJg==", "user"=>{"name"=>"John", "username"=>"NewUser8", "password_digest"=>"[FILTERED]", "age"=>"30"}, "commit"=>"Create User"}
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "NewUser8"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "NewUser8"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "age", "created_at", "updated_at", "password_digest", "username") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "John"], ["age", 30], ["created_at", "2020-08-18 20:10:14.800399"], ["updated_at", "2020-08-18 20:10:14.800399"], ["password_digest", "admin"], ["username", "NewUser8"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 10], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 10], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Blob Create (0.4ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "pupfv4wvlr6cw20o63wzdalkjzdq"], ["filename", "4.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["byte_size", 26829], ["checksum", "bTWSCCooNUjW2T07Xe0RHA=="], ["created_at", "2020-08-18 20:10:14.869554"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "avatar"], ["record_type", "User"], ["record_id", 10], ["blob_id", 7], ["created_at", "2020-08-18 20:10:14.875502"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Update (0.1ms)[0m  [1m[33mUPDATE "users" SET "updated_at" = ? WHERE "users"."id" = ?[0m  [["updated_at", "2020-08-18 20:10:14.879387"], ["id", 10]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+[36m  Disk Storage (1.6ms) [0m[32mUploaded file to key: pupfv4wvlr6cw20o63wzdalkjzdq (checksum: bTWSCCooNUjW2T07Xe0RHA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: a240d6cc-9cbb-4284-bd76-e090902d2674) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00007fea285a7408 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/7>>
+Redirected to http://localhost:3000/login
+Completed 302 Found in 134ms (ActiveRecord: 9.8ms | Allocations: 52303)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:10:15 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674] Performing ActiveStorage::AnalyzeJob (Job ID: a240d6cc-9cbb-4284-bd76-e090902d2674) from Async(active_storage_analysis) enqueued at 2020-08-18T20:10:14Z with arguments: #<GlobalID:0x00007fea24645698 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/7>>
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1939)
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674] [36m  Disk Storage (1.8ms) [0m[34mDownloaded file from key: pupfv4wvlr6cw20o63wzdalkjzdq[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674] Skipping image analysis because the mini_magick gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674]   [1m[36mActiveStorage::Blob Update (0.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 7]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674]   [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [a240d6cc-9cbb-4284-bd76-e090902d2674] Performed ActiveStorage::AnalyzeJob (Job ID: a240d6cc-9cbb-4284-bd76-e090902d2674) from Async(active_storage_analysis) in 17.05ms
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 31.5ms | ActiveRecord: 0.0ms | Allocations: 19043)
+
+
+Started POST "/login" for ::1 at 2020-08-18 15:10:27 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"XRjNNwxmQEIXhm3sgDoligPEOScoYah73wjuZdNESHFxj1ESYM+bYhSYNplgiT0cf3ZanluLv6ngDdMbiQDKGw==", "login"=>{"username"=>"NewUser8", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "NewUser8"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/users/10
+Completed 200 OK in 36ms (ActiveRecord: 1.4ms | Allocations: 14872)
+
+
+Started GET "/users/10" for ::1 at 2020-08-18 15:10:27 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 10], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 48.5ms | Allocations: 8690)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 74ms (Views: 64.4ms | ActiveRecord: 2.5ms | Allocations: 14209)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b10b8c27b55f402dfedeac2a122ca3386add462b/4.jpg" for ::1 at 2020-08-18 15:10:27 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b10b8c27b55f402dfedeac2a122ca3386add462b", "filename"=>"4"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: pupfv4wvlr6cw20o63wzdalkjzdq (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhjSFZ3Wm5ZMGQzWnNjalpqZHpJd2J6WXpkM3BrWVd4cmFucGtjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpRdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMwTG1wd1p3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEMmx0WVdkbEwycHdaV2NHT3daVSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MTU6MjcuMjMxWiIsInB1ciI6ImJsb2Jfa2V5In19--bd3d5e61fe7f58947642960c005ab4410a26bcc2/4.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%224.jpg%22%3B+filename%2A%3DUTF-8%27%274.jpg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhjSFZ3Wm5ZMGQzWnNjalpqZHpJd2J6WXpkM3BrWVd4cmFucGtjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpRdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMwTG1wd1p3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEMmx0WVdkbEwycHdaV2NHT3daVSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MTU6MjcuMjMxWiIsInB1ciI6ImJsb2Jfa2V5In19--bd3d5e61fe7f58947642960c005ab4410a26bcc2/4.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%224.jpg%22%3B+filename%2A%3DUTF-8%27%274.jpg
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 2229)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhjSFZ3Wm5ZMGQzWnNjalpqZHpJd2J6WXpkM3BrWVd4cmFucGtjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpRdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMwTG1wd1p3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEMmx0WVdkbEwycHdaV2NHT3daVSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MTU6MjcuMjMxWiIsInB1ciI6ImJsb2Jfa2V5In19--bd3d5e61fe7f58947642960c005ab4410a26bcc2/4.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%224.jpg%22%3B+filename%2A%3DUTF-8%27%274.jpg" for ::1 at 2020-08-18 15:10:27 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"4.jpg\"; filename*=UTF-8''4.jpg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhjSFZ3Wm5ZMGQzWnNjalpqZHpJd2J6WXpkM3BrWVd4cmFucGtjUVk2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpTldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpRdWFuQm5JanNnWm1sc1pXNWhiV1VxUFZWVVJpMDRKeWMwTG1wd1p3WTdCbFE2RVdOdmJuUmxiblJmZEhsd1pVa2lEMmx0WVdkbEwycHdaV2NHT3daVSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MTU6MjcuMjMxWiIsInB1ciI6ImJsb2Jfa2V5In19--bd3d5e61fe7f58947642960c005ab4410a26bcc2", "filename"=>"4"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 499)
+
+
+Started GET "/users/create" for ::1 at 2020-08-18 15:13:19 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"create"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+Completed 404 Not Found in 66ms (ActiveRecord: 1.5ms | Allocations: 16181)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=create):
+  
+app/controllers/users_controller.rb:40:in `find_user'
+app/controllers/users_controller.rb:22:in `show'
+Started GET "/posts" for ::1 at 2020-08-18 15:13:30 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 45.2ms | Allocations: 14949)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 101ms (Views: 52.4ms | ActiveRecord: 4.6ms | Allocations: 26934)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 15:19:07 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.1ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 86.5ms | Allocations: 14588)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 182ms (Views: 105.1ms | ActiveRecord: 2.0ms | Allocations: 39649)
+
+
+Started GET "/logout" for ::1 at 2020-08-18 15:22:21 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 12ms (ActiveRecord: 0.0ms | Allocations: 404)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:22:21 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 13.0ms | Allocations: 2246)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 118ms (Views: 105.0ms | ActiveRecord: 0.0ms | Allocations: 7130)
+
+
+Started POST "/login" for ::1 at 2020-08-18 15:22:35 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"EAnLYTF107p7EHtNibhG6m1Ha7lsiEW1dQeupBLZt4qfNXse8s2CJTbdHOfuFA1ii1tpriiZo4cxaPMVbkwYzg==", "login"=>{"username"=>"Juantoanxoup", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Juantoanxoup"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/users/2
+Completed 200 OK in 9ms (ActiveRecord: 2.8ms | Allocations: 1289)
+
+
+Started GET "/users/2" for ::1 at 2020-08-18 15:22:35 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 38.7ms | Allocations: 16383)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 98ms (Views: 88.9ms | ActiveRecord: 2.9ms | Allocations: 22173)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115/IMG_1216.jpeg" for ::1 at 2020-08-18 15:22:35 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115", "filename"=>"IMG_1216"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (0.8ms) [0m[34mGenerated URL for file at key: xla45a36o73bxkwhdbsuhq3z8diw (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6Mjc6MzUuNDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--bc270949a3f357fe2fe90cab612af9154be740ee/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6Mjc6MzUuNDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--bc270949a3f357fe2fe90cab612af9154be740ee/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms | Allocations: 2220)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6Mjc6MzUuNDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--bc270949a3f357fe2fe90cab612af9154be740ee/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg" for ::1 at 2020-08-18 15:22:35 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"IMG_1216.jpeg\"; filename*=UTF-8''IMG_1216.jpeg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6Mjc6MzUuNDI3WiIsInB1ciI6ImJsb2Jfa2V5In19--bc270949a3f357fe2fe90cab612af9154be740ee", "filename"=>"IMG_1216"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 499)
+
+
+Started GET "/logout" for ::1 at 2020-08-18 15:25:11 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms | Allocations: 403)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:25:11 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 3.2ms | Allocations: 2243)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 4500)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>BikeHouston</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%byebug%>
+  <% if controller_name == 'login' && action_name == 'main' %>
+      <%= link_to "Log Out", logout_path %> <%= link_to "All Post", posts_path %>
+    <%= yield %>
+  </body>
+</html>
+
+):
+1:    <!DOCTYPE html>
+2:    <html>
+3:      <head>
+4:        <title>BikeHouston</title>
+5:        <%= csrf_meta_tags %>
+6:        <%= csp_meta_tag %>
+7:    
+8:        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+9:        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+10:      </head>
+11:    
+12:      <body>
+13:      <%byebug%>
+14:      <% if controller_name == 'login' && action_name == 'main' %>
+15:          <%= link_to "Log Out", logout_path %> <%= link_to "All Post", posts_path %>
+16:        <%= yield %>
+17:      </body>
+18:    </html>
+  
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/views/layouts/application.html.erb:21: syntax error, unexpected end-of-input, expecting end
+app/controllers/auth_controller.rb:5:in `login'
+Started GET "/logout" for ::1 at 2020-08-18 15:25:25 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 404)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:25:25 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 2.6ms | Allocations: 2243)
+[Webpacker] Everything's up-to-date. Nothing to do
+Started GET "/login" for ::1 at 2020-08-18 15:27:41 -0500
+Completed 200 OK in 136243ms (Views: 136241.6ms | ActiveRecord: 0.0ms | Allocations: 51717)
+
+
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 5.1ms | Allocations: 2265)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 3401ms (Views: 3400.1ms | ActiveRecord: 0.0ms | Allocations: 32476)
+
+
+Started GET "/login" for ::1 at 2020-08-18 15:27:51 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 2.5ms | Allocations: 2195)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 16ms (Views: 14.7ms | ActiveRecord: 0.0ms | Allocations: 7130)
+
+
+Started POST "/login" for ::1 at 2020-08-18 15:28:03 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"VzdwWM49LJm8BO3U7vx+9cNT7tbv2eYUsuL6WH5HOb97oOx9opT3ub8atqEOT2Zjv+GNb5wz8caN58cmJAO71Q==", "login"=>{"username"=>"Juantoanxoup", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Juantoanxoup"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/users/2
+Completed 200 OK in 4ms (ActiveRecord: 0.2ms | Allocations: 1133)
+
+
+Started GET "/users/2" for ::1 at 2020-08-18 15:28:03 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 8.0ms | Allocations: 2306)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 20.7ms | ActiveRecord: 0.7ms | Allocations: 8044)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115/IMG_1216.jpeg" for ::1 at 2020-08-18 15:28:03 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115", "filename"=>"IMG_1216"}
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (0.6ms) [0m[34mGenerated URL for file at key: xla45a36o73bxkwhdbsuhq3z8diw (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MzM6MDMuODE1WiIsInB1ciI6ImJsb2Jfa2V5In19--4ab3a16a12a84064fc7ee7194ac46bd90bbabc40/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MzM6MDMuODE1WiIsInB1ciI6ImJsb2Jfa2V5In19--4ab3a16a12a84064fc7ee7194ac46bd90bbabc40/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms | Allocations: 1885)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MzM6MDMuODE1WiIsInB1ciI6ImJsb2Jfa2V5In19--4ab3a16a12a84064fc7ee7194ac46bd90bbabc40/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg" for ::1 at 2020-08-18 15:28:03 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"IMG_1216.jpeg\"; filename*=UTF-8''IMG_1216.jpeg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjA6MzM6MDMuODE1WiIsInB1ciI6ImJsb2Jfa2V5In19--4ab3a16a12a84064fc7ee7194ac46bd90bbabc40", "filename"=>"IMG_1216"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 461)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 15:29:01 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 10.8ms | Allocations: 3202)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 23.6ms | ActiveRecord: 1.3ms | Allocations: 9663)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:30:02 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 5.9ms | Allocations: 854)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 34ms (Views: 26.7ms | ActiveRecord: 0.9ms | Allocations: 6049)
+
+
+Started GET "/trails/new" for ::1 at 2020-08-18 15:30:06 -0500
+Processing by TrailsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/new.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 8.4ms | Allocations: 2051)
+  Rendered trails/new.html.erb within layouts/application (Duration: 11.7ms | Allocations: 2359)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 36ms (Views: 27.9ms | ActiveRecord: 0.3ms | Allocations: 7121)
+
+
+Started GET "/trails/new" for ::1 at 2020-08-18 15:31:11 -0500
+Processing by TrailsController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/new.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 9.8ms | Allocations: 1786)
+  Rendered trails/new.html.erb within layouts/application (Duration: 12.3ms | Allocations: 2090)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 43.7ms | ActiveRecord: 0.4ms | Allocations: 7780)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:31:13 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 824)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 18.7ms | ActiveRecord: 0.6ms | Allocations: 5601)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 15:36:34 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 14.4ms | Allocations: 1798)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 71ms (Views: 60.1ms | ActiveRecord: 0.9ms | Allocations: 8044)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:36:36 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 824)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 24.7ms | ActiveRecord: 0.7ms | Allocations: 5603)
+
+
+Started GET "/trails/new" for ::1 at 2020-08-18 15:36:52 -0500
+Processing by TrailsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/new.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 46.5ms | Allocations: 4356)
+  Rendered trails/new.html.erb within layouts/application (Duration: 49.4ms | Allocations: 4661)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 76ms (Views: 72.3ms | ActiveRecord: 0.2ms | Allocations: 9345)
+
+
+Started POST "/trails" for ::1 at 2020-08-18 15:37:14 -0500
+Processing by TrailsController#create as HTML
+  Parameters: {"authenticity_token"=>"wEji9DE11VGY0RR5Sd3lCC9tgg3NNENXbUlMNfjAq5Ls337RXZwOcZvPTwypbv2eU9/htL7eVIVSTHFLooQp+A==", "trail"=>{"trail_pic"=>#<ActionDispatch::Http::UploadedFile:0x00007fea27d9c330 @tempfile=#<Tempfile:/var/folders/q0/yrlb7lm52v3_78ljs5lmn1l80000gn/T/RackMultipart20200818-9613-iogslc.jpg>, @original_filename="42613.jpg", @content_type="image/jpeg", @headers="Content-Disposition: form-data; name=\"trail[trail_pic]\"; filename=\"42613.jpg\"\r\nContent-Type: image/jpeg\r\n">, "name"=>"", "location"=>"", "length"=>"", "duration"=>"", "difficulty"=>"", "trail_type"=>""}, "commit"=>"Create Trail"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mTrail Create (1.1ms)[0m  [1m[32mINSERT INTO "trails" ("name", "location", "length", "duration", "difficulty", "trail_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", ""], ["location", ""], ["length", ""], ["duration", ""], ["difficulty", ""], ["trail_type", ""], ["created_at", "2020-08-18 20:37:14.096657"], ["updated_at", "2020-08-18 20:37:14.096657"]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["key", "9t0l1d2b2iu6xlxyczrmuofq8w7c"], ["filename", "42613.jpg"], ["content_type", "image/jpeg"], ["metadata", "{\"identified\":true}"], ["byte_size", 451420], ["checksum", "9y4hM4gP6ygNTm8ULmnMog=="], ["created_at", "2020-08-18 20:37:14.117548"]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mActiveStorage::Attachment Create (0.3ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "trail_pic"], ["record_type", "Trail"], ["record_id", 3], ["blob_id", 8], ["created_at", "2020-08-18 20:37:14.121227"]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[36mTrail Update (0.3ms)[0m  [1m[33mUPDATE "trails" SET "updated_at" = ? WHERE "trails"."id" = ?[0m  [["updated_at", "2020-08-18 20:37:14.125336"], ["id", 3]]
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/trails_controller.rb:14:in `create'
+[36m  Disk Storage (7.4ms) [0m[32mUploaded file to key: 9t0l1d2b2iu6xlxyczrmuofq8w7c (checksum: 9y4hM4gP6ygNTm8ULmnMog==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: e14d18a2-49b8-400c-a2d0-df52c1a0f542) to Async(active_storage_analysis) with arguments: #<GlobalID:0x00007fea2855e460 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/8>>
+Redirected to http://localhost:3000/trails/3
+Completed 302 Found in 60ms (ActiveRecord: 5.5ms | Allocations: 14567)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542] Performing ActiveStorage::AnalyzeJob (Job ID: e14d18a2-49b8-400c-a2d0-df52c1a0f542) from Async(active_storage_analysis) enqueued at 2020-08-18T20:37:14Z with arguments: #<GlobalID:0x00007fea2859e830 @uri=#<URI::GID gid://bike-houston/ActiveStorage::Blob/8>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542] [36m  Disk Storage (0.9ms) [0m[34mDownloaded file from key: 9t0l1d2b2iu6xlxyczrmuofq8w7c[0m
+Started GET "/trails/3" for ::1 at 2020-08-18 15:37:14 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542] Skipping image analysis because the mini_magick gem isn't installed
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542]   [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542]   [1m[36mActiveStorage::Blob Update (0.8ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 8]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542]   [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+[ActiveJob] [ActiveStorage::AnalyzeJob] [e14d18a2-49b8-400c-a2d0-df52c1a0f542] Performed ActiveStorage::AnalyzeJob (Job ID: e14d18a2-49b8-400c-a2d0-df52c1a0f542) from Async(active_storage_analysis) in 59.32ms
+  ↳ app/views/trails/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:3
+  Rendered trails/show.html.erb within layouts/application (Duration: 9.8ms | Allocations: 2126)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 93ms (Views: 73.2ms | ActiveRecord: 2.4ms | Allocations: 21594)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b09a28fa87a394cd43a9f5c1b6205faf10a71a69/42613.jpg" for ::1 at 2020-08-18 15:37:14 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b09a28fa87a394cd43a9f5c1b6205faf10a71a69", "filename"=>"42613"}
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+[36m  Disk Storage (1.7ms) [0m[34mGenerated URL for file at key: 9t0l1d2b2iu6xlxyczrmuofq8w7c (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPWFF3YkRGa01tSXlhWFUyZUd4NGVXTjZjbTExYjJaeE9IYzNZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMThUMjA6NDI6MTQuNDI4WiIsInB1ciI6ImJsb2Jfa2V5In19--077695486416bd861de8fe6f5e2d16882d02bc09/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPWFF3YkRGa01tSXlhWFUyZUd4NGVXTjZjbTExYjJaeE9IYzNZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMThUMjA6NDI6MTQuNDI4WiIsInB1ciI6ImJsb2Jfa2V5In19--077695486416bd861de8fe6f5e2d16882d02bc09/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg
+Completed 302 Found in 13ms (ActiveRecord: 0.3ms | Allocations: 1886)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPWFF3YkRGa01tSXlhWFUyZUd4NGVXTjZjbTExYjJaeE9IYzNZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMThUMjA6NDI6MTQuNDI4WiIsInB1ciI6ImJsb2Jfa2V5In19--077695486416bd861de8fe6f5e2d16882d02bc09/42613.jpg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%2242613.jpg%22%3B+filename%2A%3DUTF-8%27%2742613.jpg" for ::1 at 2020-08-18 15:37:14 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"42613.jpg\"; filename*=UTF-8''42613.jpg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhPWFF3YkRGa01tSXlhWFUyZUd4NGVXTjZjbTExYjJaeE9IYzNZd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUFdsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWpReU5qRXpMbXB3WnlJN0lHWnBiR1Z1WVcxbEtqMVZWRVl0T0Njbk5ESTJNVE11YW5CbkJqc0dWRG9SWTI5dWRHVnVkRjkwZVhCbFNTSVBhVzFoWjJVdmFuQmxad1k3QmxRPSIsImV4cCI6IjIwMjAtMDgtMThUMjA6NDI6MTQuNDI4WiIsInB1ciI6ImJsb2Jfa2V5In19--077695486416bd861de8fe6f5e2d16882d02bc09", "filename"=>"42613"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 462)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:37:27 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 760)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 19.9ms | ActiveRecord: 0.9ms | Allocations: 5393)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 15:37:33 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 22.9ms | ActiveRecord: 1.2ms | Allocations: 6199)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 15:37:36 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 13.5ms | ActiveRecord: 1.1ms | Allocations: 6199)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 15:43:34 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 8.8ms | Allocations: 2804)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 99ms (Views: 26.0ms | ActiveRecord: 1.2ms | Allocations: 32886)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:43:36 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 891)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 18.7ms | ActiveRecord: 0.8ms | Allocations: 5672)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 15:44:03 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 11.7ms | Allocations: 4523)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 43ms (Views: 20.8ms | ActiveRecord: 0.7ms | Allocations: 16508)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 15:44:05 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 739)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 51ms (Views: 45.8ms | ActiveRecord: 0.7ms | Allocations: 5386)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 15:44:23 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 21.0ms | ActiveRecord: 1.0ms | Allocations: 6202)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 15:44:25 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 19.4ms | ActiveRecord: 1.0ms | Allocations: 6200)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:05 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 761)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 27.2ms | ActiveRecord: 1.3ms | Allocations: 5420)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:06 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 25.3ms | ActiveRecord: 1.0ms | Allocations: 5371)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:08 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 25.9ms | ActiveRecord: 0.8ms | Allocations: 5372)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:09 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 7.2ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 33ms (Views: 28.8ms | ActiveRecord: 1.0ms | Allocations: 5369)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:09 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.0ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 20.4ms | ActiveRecord: 0.5ms | Allocations: 5365)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:09 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 19.3ms | ActiveRecord: 0.8ms | Allocations: 5363)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 16:04:15 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 12.3ms | Allocations: 2920)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 20.5ms | ActiveRecord: 1.6ms | Allocations: 8847)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:16 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 41.2ms | ActiveRecord: 0.9ms | Allocations: 5375)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:16 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 0.6ms | Allocations: 5371)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:17 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 3.4ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 28ms (Views: 22.5ms | ActiveRecord: 0.8ms | Allocations: 5366)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:17 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 24ms (Views: 19.4ms | ActiveRecord: 0.6ms | Allocations: 5371)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:17 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.5ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 33.0ms | Allocations: 734)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 56ms (Views: 51.0ms | ActiveRecord: 1.0ms | Allocations: 5363)
+
+
+Started GET "/logout" for ::1 at 2020-08-18 16:04:18 -0500
+Processing by AuthController#logout as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 408)
+
+
+Started GET "/login" for ::1 at 2020-08-18 16:04:18 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 5.2ms | Allocations: 2194)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 31ms (Views: 30.1ms | ActiveRecord: 0.0ms | Allocations: 6688)
+
+
+Started POST "/login" for ::1 at 2020-08-18 16:04:21 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"ZFJwTm7fhA6XX1BBtuC/ogXxUnEzFxnOhTUCd7WX/i/rbsAxrWfVkdqSN+vRTPQq4+1QZncG//zBWl/GyQJRaw==", "login"=>{"username"=>"adfa", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adfa"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/login
+Completed 200 OK in 3ms (ActiveRecord: 0.2ms | Allocations: 1247)
+
+
+Started GET "/login" for ::1 at 2020-08-18 16:04:21 -0500
+Processing by AuthController#login as HTML
+  Rendering auth/login.html.erb within layouts/application
+  Rendered auth/login.html.erb within layouts/application (Duration: 5.0ms | Allocations: 1937)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 27ms (Views: 25.0ms | ActiveRecord: 0.0ms | Allocations: 5842)
+
+
+Started POST "/login" for ::1 at 2020-08-18 16:04:27 -0500
+Processing by AuthController#verify as JS
+  Parameters: {"authenticity_token"=>"S19NfO2PG5YKIy/9kzHvClx1CiFYMl/2Qe6ehlmPhCzEY/0DLjdKCUfuSFf0naSCumkINhwjucQFgcM3JRoraA==", "login"=>{"username"=>"Juantoanxoup", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Juantoanxoup"], ["LIMIT", 1]]
+  ↳ app/controllers/auth_controller.rb:14:in `verify'
+Redirected to http://localhost:3000/users/2
+Completed 200 OK in 3ms (ActiveRecord: 0.2ms | Allocations: 1166)
+
+
+Started GET "/users/2" for ::1 at 2020-08-18 16:04:27 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 42.5ms | Allocations: 14903)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 79ms (Views: 72.1ms | ActiveRecord: 2.1ms | Allocations: 20726)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115/IMG_1216.jpeg" for ::1 at 2020-08-18 16:04:27 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115", "filename"=>"IMG_1216"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (1.0ms) [0m[34mGenerated URL for file at key: xla45a36o73bxkwhdbsuhq3z8diw (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MDk6MjcuNjE5WiIsInB1ciI6ImJsb2Jfa2V5In19--0ab2b00a3b69c171cad9b1e4d13775c5a010d1f3/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MDk6MjcuNjE5WiIsInB1ciI6ImJsb2Jfa2V5In19--0ab2b00a3b69c171cad9b1e4d13775c5a010d1f3/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 2225)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MDk6MjcuNjE5WiIsInB1ciI6ImJsb2Jfa2V5In19--0ab2b00a3b69c171cad9b1e4d13775c5a010d1f3/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg" for ::1 at 2020-08-18 16:04:27 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"IMG_1216.jpeg\"; filename*=UTF-8''IMG_1216.jpeg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MDk6MjcuNjE5WiIsInB1ciI6ImJsb2Jfa2V5In19--0ab2b00a3b69c171cad9b1e4d13775c5a010d1f3", "filename"=>"IMG_1216"}
+Completed 200 OK in 2ms (ActiveRecord: 0.0ms | Allocations: 499)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:04:30 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 5.0ms | Allocations: 739)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 25ms (Views: 19.7ms | ActiveRecord: 0.6ms | Allocations: 5376)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 16:04:31 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 22ms (Views: 15.7ms | ActiveRecord: 0.8ms | Allocations: 6202)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 16:04:34 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 35ms (Views: 26.7ms | ActiveRecord: 1.8ms | Allocations: 6197)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 16:05:02 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1020)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 38ms (Views: 30.7ms | ActiveRecord: 1.0ms | Allocations: 6206)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:08:39 -0500
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 17.5ms | Allocations: 7222)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 101ms (Views: 34.0ms | ActiveRecord: 4.5ms | Allocations: 30246)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:11:37 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 914)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 46ms (Views: 39.2ms | ActiveRecord: 0.7ms | Allocations: 6603)
+
+
+Started GET "/trails/new" for ::1 at 2020-08-18 16:11:39 -0500
+Processing by TrailsController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/new.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 5.8ms | Allocations: 2083)
+  Rendered trails/new.html.erb within layouts/application (Duration: 8.7ms | Allocations: 2388)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 53ms (Views: 45.3ms | ActiveRecord: 0.3ms | Allocations: 7171)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 16:12:13 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (1.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (1.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 34.8ms | Allocations: 5102)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 56ms (Views: 42.0ms | ActiveRecord: 3.2ms | Allocations: 10461)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 16:12:15 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 5.8ms | Allocations: 1021)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 17.2ms | ActiveRecord: 1.2ms | Allocations: 6201)
+
+
+Started GET "/trails/1" for ::1 at 2020-08-18 16:13:24 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 12.5ms | Allocations: 1283)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 93ms (Views: 75.8ms | ActiveRecord: 6.8ms | Allocations: 7507)
+
+
+Started GET "/trails/1/edit" for ::1 at 2020-08-18 16:13:25 -0500
+Processing by TrailsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/edit.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 9.5ms | Allocations: 2117)
+  Rendered trails/edit.html.erb within layouts/application (Duration: 11.5ms | Allocations: 2422)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 19.1ms | ActiveRecord: 0.5ms | Allocations: 7734)
+
+
+Started GET "/trails/2" for ::1 at 2020-08-18 16:13:37 -0500
+Processing by TrailsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.6ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Trail"], ["name", "trail_pic"], ["LIMIT", 1]]
+  ↳ app/views/trails/show.html.erb:1
+  Rendered trails/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1056)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 21.5ms | ActiveRecord: 1.9ms | Allocations: 6222)
+
+
+Started GET "/trails/2/edit" for ::1 at 2020-08-18 16:13:38 -0500
+Processing by TrailsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/trails_controller.rb:42:in `find_trail'
+  Rendering trails/edit.html.erb within layouts/application
+  Rendered trails/_form.html.erb (Duration: 8.6ms | Allocations: 1749)
+  Rendered trails/edit.html.erb within layouts/application (Duration: 9.4ms | Allocations: 1814)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 29ms (Views: 21.6ms | ActiveRecord: 0.6ms | Allocations: 6987)
+
+
+Started GET "/users/2" for ::1 at 2020-08-18 16:14:36 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:40:in `find_user'
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "User"], ["name", "avatar"], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:1
+  [1m[36mActiveStorage::Blob Load (0.8ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/show.html.erb:3
+  Rendered users/show.html.erb within layouts/application (Duration: 53.9ms | Allocations: 15173)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 93ms (Views: 81.3ms | ActiveRecord: 3.8ms | Allocations: 20995)
+
+
+Started GET "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115/IMG_1216.jpeg" for ::1 at 2020-08-18 16:14:36 -0500
+Processing by ActiveStorage::BlobsController#show as JPEG
+  Parameters: {"signed_id"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bce79d8d23f77b896be88acadb5eb3a7a9708115", "filename"=>"IMG_1216"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[36m  Disk Storage (0.8ms) [0m[34mGenerated URL for file at key: xla45a36o73bxkwhdbsuhq3z8diw (http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MTk6MzYuNDUwWiIsInB1ciI6ImJsb2Jfa2V5In19--724a30085621980a0b96a486f5208c56816519eb/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg)[0m
+Redirected to http://localhost:3000/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MTk6MzYuNDUwWiIsInB1ciI6ImJsb2Jfa2V5In19--724a30085621980a0b96a486f5208c56816519eb/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg
+Completed 302 Found in 7ms (ActiveRecord: 0.2ms | Allocations: 2220)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MTk6MzYuNDUwWiIsInB1ciI6ImJsb2Jfa2V5In19--724a30085621980a0b96a486f5208c56816519eb/IMG_1216.jpeg?content_type=image%2Fjpeg&disposition=inline%3B+filename%3D%22IMG_1216.jpeg%22%3B+filename%2A%3DUTF-8%27%27IMG_1216.jpeg" for ::1 at 2020-08-18 16:14:36 -0500
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"content_type"=>"image/jpeg", "disposition"=>"inline; filename=\"IMG_1216.jpeg\"; filename*=UTF-8''IMG_1216.jpeg", "encoded_key"=>"eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9JYTJWNVNTSWhlR3hoTkRWaE16WnZOek5pZUd0M2FHUmljM1ZvY1RONk9HUnBkd1k2QmtWVU9oQmthWE53YjNOcGRHbHZia2tpUldsdWJHbHVaVHNnWm1sc1pXNWhiV1U5SWtsTlIxOHhNakUyTG1wd1pXY2lPeUJtYVd4bGJtRnRaU285VlZSR0xUZ25KMGxOUjE4eE1qRTJMbXB3WldjR093WlVPaEZqYjI1MFpXNTBYM1I1Y0dWSklnOXBiV0ZuWlM5cWNHVm5CanNHVkE9PSIsImV4cCI6IjIwMjAtMDgtMThUMjE6MTk6MzYuNDUwWiIsInB1ciI6ImJsb2Jfa2V5In19--724a30085621980a0b96a486f5208c56816519eb", "filename"=>"IMG_1216"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms | Allocations: 498)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:14:59 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.3ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 6.7ms | Allocations: 867)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 32ms (Views: 24.8ms | ActiveRecord: 0.6ms | Allocations: 6559)
+
+
+Started GET "/posts" for ::1 at 2020-08-18 16:15:55 -0500
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:6:in `upcoming_post'
+  [1m[36mCACHE Post Load (0.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/models/post.rb:10:in `past_post'
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mTrail Load (0.2ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:5
+  [1m[36mCACHE Trail Load (0.0ms)[0m  [1m[34mSELECT "trails".* FROM "trails" WHERE "trails"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:6
+  Rendered posts/index.html.erb within layouts/application (Duration: 16.7ms | Allocations: 4528)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 55ms (Views: 30.9ms | ActiveRecord: 2.2ms | Allocations: 16902)
+
+
+Started GET "/trails" for ::1 at 2020-08-18 16:16:00 -0500
+Processing by TrailsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:6:in `current_user'
+  Rendering trails/index.html.erb within layouts/application
+  [1m[36mTrail Load (0.4ms)[0m  [1m[34mSELECT "trails".* FROM "trails"[0m
+  ↳ app/views/trails/index.html.erb:2
+  Rendered trails/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 739)
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 26ms (Views: 17.8ms | ActiveRecord: 0.7ms | Allocations: 5378)
+
+

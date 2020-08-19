@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_155712) do
+ActiveRecord::Schema.define(version: 2020_08_18_191710) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(version: 2020_08_18_155712) do
   create_table "bike_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "bike_id"
-    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_id"
   end
 
   create_table "bike_likes", force: :cascade do |t|
@@ -61,12 +61,18 @@ ActiveRecord::Schema.define(version: 2020_08_18_155712) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "post_comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "post_id"
+  create_table "comments", force: :cascade do |t|
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_id"
   end
 
   create_table "post_likes", force: :cascade do |t|
@@ -99,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_155712) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_id"
   end
 
   create_table "trail_likes", force: :cascade do |t|
