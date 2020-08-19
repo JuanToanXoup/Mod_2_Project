@@ -4,7 +4,8 @@ class BikesController < ApplicationController
         @bikes = Bike.all
     end
 
-    def new
+    def new    
+        @user = User.find_by(id: params[:id])
         @bike = Bike.new
     end
 
@@ -16,7 +17,7 @@ class BikesController < ApplicationController
             redirect_to bike_path(@bike)
         else
             flash[:errors] = @bike.errors.messages
-            redirect_to new_bike_path
+            redirect_to user_path(@bike.user_id)
         end
     end
     

@@ -2,10 +2,10 @@
 
 <h2><%= @bike.make %></h2>
 <ul>
-<br><li><b><%= @bike.user.name %></b></br>
-<br><li><b><%= @bike.model %></b></br>
-<br><li><b><%= @bike.bike_type %></b><br>
-<br><li><b><%= @bike.frame_size %></b></br>
+<br><li>Owner:<b><%= @bike.user.name %></b></br>
+<br><li>Model:<b><%= @bike.model %></b></br>
+<br><li>Bike Type:<b><%= @bike.bike_type %></b><br>
+<br><li>Frame Size:<b><%= @bike.frame_size %></b></br>
 <br>
 <ul><br><% @bike.bike_comments.each do |p| %>
     <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
