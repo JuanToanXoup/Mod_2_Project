@@ -10,4 +10,7 @@ class Trail < ApplicationRecord
     has_many    :users, through: :trail_likes
     
     has_one_attached :trail_pic
+
+    validates :name, :location, :duration, :length, :difficulty, :trail_type, presence: true
+
 end

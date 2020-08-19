@@ -18,5 +18,6 @@ class User < ApplicationRecord
 
     has_one_attached :avatar
 
+    validates :name, :username, :age, presence: true
     validates :username, uniqueness: true
 end

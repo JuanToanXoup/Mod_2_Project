@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorized
+    before_action :authorized, only: [:index,:show,:edit,:update,:destroy]
     def index
         @users = User.all
     end
@@ -10,7 +10,8 @@ class UsersController < ApplicationController
             @rand = rand(15)
             @user.avatar.attach(io: File.open("app/assets/images/avatars/#{@rand}.jpg"),filename: "#{@rand}.jpg", content_type: 'image/jpg')
             @user.save
-            redirect_to user_path(@user)
+            flash[:error] = "Welcome! Please sign in with your new Username and Password."
+            redirect_to login_path
         else
             flash[:error] = @user.errors.messages
             redirect_to sign_up_path
