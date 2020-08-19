@@ -10,9 +10,17 @@
 <li>Age: <%= @user.age %><br>
 <li>Skill Level: <%= @user.skill_level %><br>
 <li>Address: <%= @user.address %><br>
+<li>Bikes</br>   
+<%@user.bikes.each do |b|%> 
+    <ul><%= b.model %></br></ul> 
+<%end%><br>
 </ul>
 <% if @user == current_user %>
     <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+    <br>
+    <%= button_to "New Bike", "/users/#{@user.id}/bikes/new", method: :get %>
+    <br>
+    <%= button_to "Find a Trail", trails_path, method: :get %>
 <% else %>
     <% flash[:ids] = {follower_id: current_user.id,followed_id: @user.id} %>
     <%= button_to "Follow User", new_friend_path, method: :get %>

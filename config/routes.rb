@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :trail_comments
   resources :bike_comments
   resources :friends
+
+  resources :bikes, :only => [:index, :show, :edit, :update, :destroy, :create]
+  
+  resources :users do
+    resources :bikes, :only => [:new]
+  end
   
   get '/login', to: 'auth#login'
   post '/login', to: 'auth#verify'
