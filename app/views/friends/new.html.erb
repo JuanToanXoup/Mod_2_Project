@@ -1,0 +1,14 @@
+<h1> Confirm Friend Request </h1>
+<h2><%=User.find(flash[:ids]["follower_id"]).name%></h2>
+<div style="width:200px;"> <image src="<%=(url_for(User.find(flash[:ids]["follower_id"]).avatar))%>" style="max-width:100%;" /> </div> <br>
+
+<h2><%=User.find(flash[:ids]["followed_id"]).name%></h2><br>
+<div style="width:200px;"> <image src="<%=(url_for(User.find(flash[:ids]["followed_id"]).avatar))%>" style="max-width:100%;" /> </div> <br>
+<%flash[:user_ids] = {follower_id: flash[:ids]["follower_id"], followed_id: flash[:ids]["followed_id"]}%>
+<%= form_for @friend do |f|%>
+    <%= f.submit "Confirm Friendship" %>
+<% end %>
+<%= button_to "Cancel Friend Request", users_path, method: :get %>
+
+
+

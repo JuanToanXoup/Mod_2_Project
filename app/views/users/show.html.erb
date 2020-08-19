@@ -11,4 +11,17 @@
 <li>Skill Level: <%= @user.skill_level %><br>
 <li>Address: <%= @user.address %><br>
 </ul>
-<%= button_to "Edit User", edit_user_path(@user), method: :get %>
+<% if @user == current_user %>
+    <%= button_to "Edit User", edit_user_path(@user), method: :get %>
+<% else %>
+    <% flash[:ids] = {follower_id: current_user.id,followed_id: @user.id} %>
+    <%= button_to "Follow User", new_friend_path, method: :get %>
+<% end %>
+<h2>Following</h2>
+<% @user.followeds.each do |friend| %>
+        <div style="width:100px;"><image src="<%=(url_for(friend.avatar))%>" style="max-width:100%;" /></div><%= link_to friend.name, user_path(friend) %><br>
+<% end %>
+<h2>Followers</h2>
+<% @user.followers.each do |friend| %>
+        <div style="width:100px;"><image src="<%=(url_for(friend.avatar))%>" style="max-width:100%;" /></div><%= link_to friend.name, user_path(friend) %><br>
+<% end %>

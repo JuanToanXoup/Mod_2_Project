@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :post_comments
   resources :trail_comments
   resources :bike_comments
+  resources :friends
   
   get '/login', to: 'auth#login'
   post '/login', to: 'auth#verify'
