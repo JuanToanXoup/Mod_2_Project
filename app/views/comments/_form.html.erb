@@ -1,0 +1,20 @@
+
+<% if flash[:errors] %>
+  <% flash[:errors].keys.each do |key| %>
+    <h4 style="color: red;"> Error: <%= "#{key} #{flash[:errors][key][0]}" %> </h4>
+  <% end %>
+<% end %>
+
+<% flash[:post_id] = flash[:id] %>
+<h1><%= form_for @comment do |f|%></h1>
+    
+    
+    
+    
+    <br><%= f.label "Comment" %>
+    <%= f.text_field :description %></br>
+    
+    
+    
+    <br><%= f.submit %>
+<% end %>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_08_18_191710) do
+=======
+ActiveRecord::Schema.define(version: 2020_08_19_003435) do
+>>>>>>> 59cb0c834183ad08b9d6aa1bddb04a623487ef96
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -38,7 +42,11 @@ ActiveRecord::Schema.define(version: 2020_08_18_191710) do
     t.integer "bike_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.integer "comment_id"
+=======
+    t.text "description"
+>>>>>>> 59cb0c834183ad08b9d6aa1bddb04a623487ef96
   end
 
   create_table "bike_likes", force: :cascade do |t|
@@ -62,9 +70,26 @@ ActiveRecord::Schema.define(version: 2020_08_18_191710) do
   end
 
   create_table "comments", force: :cascade do |t|
+<<<<<<< HEAD
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+=======
+>>>>>>> 59cb0c834183ad08b9d6aa1bddb04a623487ef96
+    t.integer "user_id"
+    t.integer "trail_id"
+    t.integer "post_id"
+<<<<<<< HEAD
+=======
+    t.integer "bike_id"
+    t.text "description"
+>>>>>>> 59cb0c834183ad08b9d6aa1bddb04a623487ef96
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "comment_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
@@ -72,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_191710) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "comment_id"
+    t.text "description"
   end
 
   create_table "post_likes", force: :cascade do |t|
