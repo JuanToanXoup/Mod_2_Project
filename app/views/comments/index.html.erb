@@ -1,0 +1,10 @@
+<h1>Comments</h1>
+<ul>
+<% @comments.each do |comment| %>
+    
+    <br><li><%= comment.post.trail.name %></br>
+    <br><%= comment.description %></br>
+    <% end %>
+</ul>
+
+    <ul><%= link_to "Comment on a Post!", new_comment_path, data: { turbolinks: false } %></ul>
