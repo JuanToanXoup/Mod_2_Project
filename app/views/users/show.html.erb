@@ -15,6 +15,7 @@
     <ul><%= b.model %></br></ul> 
 <%end%><br>
 </ul>
+
 <%= flash[:ids] = {followed_id: current_user.id,followed_id: @user.id}%>
 <% if @user == current_user %>
     <%= button_to "Edit User", edit_user_path(@user), method: :get %>
@@ -22,9 +23,11 @@
     <%= button_to "New Bike", "/users/#{@user.id}/bikes/new", method: :get %>
     <br>
     <%= button_to "Find a Trail", trails_path, method: :get %>
-<% else %>
-    <% flash[:ids] = {follower_id: current_user.id,followed_id: @user.id} %>
+<% elsif @user.followers.exclude?(current_user) %>
+
     <%= button_to "Follow User", new_friend_path, method: :get %>
+<% else %>
+    <%= button_to "Unfollow User", edit_friend_path(Friend.find_by(follower_id: current_user.id, followed_id: @user.id)), method: :get %>
 <% end %>
 <h2>Following</h2>
 <% @user.followeds.each do |friend| %>

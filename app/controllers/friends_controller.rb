@@ -23,7 +23,7 @@ class FriendsController < ApplicationController
     end
 
     def edit
-
+        find_friend
     end
 
     def update
@@ -33,6 +33,7 @@ class FriendsController < ApplicationController
     def destroy
         find_friend
         @friend.destroy
+        redirect_to user_path(current_user)
     end
 
     private 
