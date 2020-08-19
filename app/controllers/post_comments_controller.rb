@@ -17,7 +17,20 @@ class PostCommentsController < ApplicationController
         end
     end
 
+    def edit
+        find_post_comment
+    end
+
+    def update
+        find_post_comment
+        @post_comment.update(comment_params)
+        redirect_to post_path(@post_comment.post_id)
+    end
+
     private
+    def find_post_comment
+        @post_comment = PostComment.find(params[:id])
+    end
 
     def comment_params
         params.require(:post_comment).permit(:user_id, :post_id, :description)

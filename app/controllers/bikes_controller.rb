@@ -10,18 +10,22 @@ class BikesController < ApplicationController
 
     def create
         @bike = Bike.new(bike_params)
+        @bike.user_id = current_user.id
         if @bike.valid?
             @bike.save
             redirect_to bike_path(@bike)
         else
-            flash[:messages] = @bike.errors.messages
-            redirect_to '/bike/new'
+            flash[:errors] = @bike.errors.messages
+            redirect_to new_bike_path
+        end
     end
     
     def show
+        find_bike
     end
 
     def edit
+        find_bike
     end
 
     def update
