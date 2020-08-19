@@ -1,3 +1,4 @@
+<% flash[:id] = @trail.id %>
 <% if @trail.trail_pic.attached? %>
     <div style="width:500px;"> 
     <image src="<%=(url_for(@trail.trail_pic))%>" style="max-width:100%;" /> 
@@ -12,3 +13,8 @@
 <li>Difficulty: <%= @trail.difficulty %><br>
 <li>Trail Type: <%= @trail.trail_type %><br>
 </ul>
+<br><%= link_to "Comment on this Trail!", new_trail_comment_path, data: { turbolinks: false } %></br>
+<ul><br><% @trail.trail_comments.each do |p| %>
+    <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
+    <%end%>
+<br></ul>

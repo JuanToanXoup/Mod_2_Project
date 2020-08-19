@@ -1,0 +1,18 @@
+
+<% if flash[:errors] %>
+  <% flash[:errors].keys.each do |key| %>
+    <h4 style="color: red;"> Error: <%= "#{key} #{flash[:errors][key][0]}" %> </h4>
+  <% end %>
+<% end %>
+<h1><%= form_for @bike do |f|%></h1>
+    <br><%= f.label :make %>
+    <%= f.text_field :make %></br>
+    <br><%= f.label :model %>
+    <%= f.text_field :model %></br>
+    <br><%= f.label :bike_type %>
+    <%= f.text_field :bike_type %></br>
+    <br><%= f.label :frame_size %>
+    <%= f.text_field :frame_size %></br>
+    
+    <br><%= f.submit %>
+<% end %>
