@@ -16,8 +16,50 @@ juantoanxoup = User.create(username: "Juantoanxoup",name: 'John', age: 27, skill
 Bike.create(make: 'Cougar', model: 't-1000', bike_type: 'Mountain', frame_size: 'Large', tire_size: '32 inch', user_id: edge.id)
 Bike.create(make: 'Lion', model: 'z-1000', bike_type: 'Cross-Country', frame_size: 'X-Large', tire_size: '48 inch', user_id: juantoanxoup.id)
 
-Trail.create(name: 'Bayou Trail', location: 'Houston', length: '12 miles', duration: '20 minutes', difficulty: 'Beginner', trail_type: 'off-road')
-Trail.create(name: 'Buffalo Trail', location: 'Houston', length: '18 miles', duration: '40 minutes', difficulty: 'Intermediate', trail_type: 'mountain')
+Trail.create(
+    name: 'Buffalo Bayou Park: Buffalo Bayou Loop', 
+    location: '1800 Allen Pkwy &, Memorial Dr, Houston, TX 77019', 
+    length: '4.8 mi', duration: '2hr 4m', difficulty: 'Intermediate', 
+    trail_type: 'Mountain Biking, Road Biking'
+    )
+Trail.create(
+    name: 'Buffalo Bayou: Blue Lagoon Trail',
+    location: '1800 Allen Pkwy &, Memorial Dr, Houston, TX 77019',
+    length: '', 
+    duration: '', 
+    difficulty: '', 
+    trail_type: ''
+    )
+Trail.create(name: 'White Oak Bayou Hike and Bike Trail',
+    location: '',
+    length: '', 
+    duration: '', 
+    difficulty: '', 
+    trail_type: ''
+    )
+Trail.create(
+    name: '',
+    location: '', length: '',
+    duration: '', difficulty: '',
+    trail_type: ''
+    )
+Trail.create(
+    name: '',
+    location: '', length: '',
+    duration: '', difficulty: '',
+    trail_type: ''
+    )
+Trail.create(
+    name: '',
+    location: '', length: '',
+    duration: '', difficulty: '',
+    trail_type: ''
+    )
+Trail.create(
+    name: '',
+    location: '', length: '',
+    duration: '', difficulty: '',
+    trail_type: ''
+    )
 
-# Post.create(user_id: integer, trail_id: integer, title: string, description: text, meetup_date: datetime)
 

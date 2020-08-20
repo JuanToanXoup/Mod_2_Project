@@ -1,7 +1,8 @@
 class TrailsController < ApplicationController
     before_action :authorized
     def index
-        @trails = Trail.all
+        @q = Trail.ransack(params[:q])
+        @trails = @q.result(distinct: true)
     end
 
     def new
