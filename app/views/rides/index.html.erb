@@ -1,0 +1,8 @@
+<h1><center>Your Ride History</h1></center>
+
+<% @user.rides.each do |r| %>
+    <li><%= r.trail.name %></li>
+    <br><ul>Date:<%= r.date %>
+    <br>Time:<%= r.time %>
+    <br>Experience:<%= r.experience %></ul>
+<%end%>
