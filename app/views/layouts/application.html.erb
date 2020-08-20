@@ -10,6 +10,9 @@
   </head>
 
   <body>
+  <header>
+      <h1><center>BikeHouston</center></h1>
+  </header>
   <% if controller_name == 'auth' && action_name == 'login'%>
     <%= link_to "Create a New Account", sign_up_path %> 
   <% elsif controller_name == 'auth' && action_name == 'sign_up' %>

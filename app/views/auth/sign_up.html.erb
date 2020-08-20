@@ -4,13 +4,13 @@
     </h4>
 <% end %>
 <%= form_for @user do |f|%>
-    <%= f.label "Full Name" %>
-    <%= f.text_field :name %><br>
-    <%= f.label :username %>
-    <%= f.text_field :username %><br>
-    <%= f.label "New Password" %>
-    <%= f.text_field :password_digest %><br>
-    <%= f.label :age %>
-    <%= f.text_field :age %><br>
-    <%= f.submit %>
+    <br><%= f.label "Full Name" %>
+    <%= f.text_field :name %></br>
+    <br><%= f.label :username %>
+    <%= f.text_field :username %></br>
+    <br><%= f.label "New Password" %>
+    <%= f.text_field :password_digest %></br>
+    <br><%= f.label :age %>
+    <%= f.text_field :age %></br>
+    <br><%= f.submit %></br>
 <% end %>

@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   resources :friends
 
   resources :bikes, :only => [:index, :show, :edit, :update, :destroy, :create]
+  resources :rides, :only => [:index, :show, :edit, :update, :destroy, :create]
   
   resources :users do
     resources :bikes, :only => [:new]
+    resources :rides, :only => [:new]
   end
   
   get '/login', to: 'auth#login'
