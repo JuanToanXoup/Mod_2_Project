@@ -1,4 +1,22 @@
 <h1> All Trails </h1>
+<%= search_form_for @q do |f| %>
+    <%= f.label :name_cont %>
+    <%= f.search_field :name_cont%><br>
+    <%= f.label :location_cont %>
+    <%= f.search_field :location_cont%><br>
+    <%= f.label :length_cont %>
+    <%= f.search_field :length_cont %><br>
+    <%= f.label :duration_cont %>
+    <%= f.search_field :duration_cont%><br>
+    <%= f.label :difficulty_cont %>
+    <%= f.select :difficulty_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %><br>
+    <%= f.label :trail_type_cont %>
+    <%= f.search_field :trail_type_cont%><br>
+
+  
+    <%= f.submit %>
+  <% end %>
+
 <% @trails.each do |t| %>
     <li><%= link_to t.name, trail_path(t)%><br>
 <% end %>
