@@ -16,13 +16,17 @@
 <%end%><br>
 </ul>
 
-<%= flash[:ids] = {followed_id: current_user.id,followed_id: @user.id}%>
+<% flash[:ids] = {followed_id: current_user.id,followed_id: @user.id}%>
 <% if @user == current_user %>
     <%= button_to "Edit User", edit_user_path(@user), method: :get %>
     <br>
     <%= button_to "New Bike", "/users/#{@user.id}/bikes/new", method: :get %>
     <br>
     <%= button_to "Find a Trail", trails_path, method: :get %>
+    <br>
+    <%= button_to "Add a Trail to your History", "/users/#{@user.id}/rides/new", method: :get %>
+    <br>
+    <%= button_to "View History", rides_path, method: :get %>
 <% elsif @user.followers.exclude?(current_user) %>
 
     <%= button_to "Follow User", new_friend_path, method: :get %>
