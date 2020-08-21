@@ -16,6 +16,6 @@
     
     
     
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary"%>
  
 <% end %>   <%= button_to "Delete Comment", {:controller => :post_comment, :action => 'destroy', :id => @comment.id, :method => :delete %>

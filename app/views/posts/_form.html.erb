@@ -3,15 +3,15 @@
     <h4 style="color: red;"> Error: <%= "#{key} #{flash[:errors][key][0]}" %> </h4>
   <% end %>
 <% end %>
-<h1><%= form_for @post do |f|%></h1>
+<%= form_for @post do |f|%>
     <br><%= f.label "Trail" %>
-    <%= f.collection_select(:trail_id, Trail.all, :id, :name) %></br>
+    <%= f.collection_select(:trail_id, Trail.all, :id, :name)%></br>
     <br><%= f.label :title %>
-    <%= f.text_field :title %></br>
+    <%= f.text_field :title, class: "form-control" %></br>
     <br><%= f.label :description %>
-    <%= f.text_field :description %></br>
+    <%= f.text_field :description, class: "form-control" %></br>
     <br><%= f.label :meetup_date %>
-    <%= f.datetime_local_field :meetup_date%></br>
+    <%= f.datetime_local_field :meetup_date, class: "form-control"%></br>
     
-    <br><%= f.submit %>
+    <br><%= f.submit class: "btn btn-primary"%>
 <% end %>

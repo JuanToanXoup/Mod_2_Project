@@ -5,16 +5,18 @@
     </div>
 <%end%>
 
-<h1>Name: <%= @trail.name %></h1>
-<ul>
-<li>Location: <%= @trail.location %><br>
-<li>Length: <%= @trail.length %><br>
-<li>Duration: <%= @trail.duration %><br>
-<li>Difficulty: <%= @trail.difficulty %><br>
-<li>Trail Type: <%= @trail.trail_type %><br>
-</ul>
-<br><%= link_to "Comment on this Trail!", new_trail_comment_path, data: { turbolinks: false } %></br>
-<ul><br><% @trail.trail_comments.each do |p| %>
-    <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
-    <%end%>
-<br></ul>
+<div class="box-for-things">
+    <h1>Name: <%= @trail.name %></h1>
+</div>
+<div class="box-for-thing">
+    <li>Location: <%= @trail.location %><br>
+    <li>Length: <%= @trail.length %><br>
+    <li>Duration: <%= @trail.duration %><br>
+    <li>Difficulty: <%= @trail.difficulty %><br>
+    <li>Trail Type: <%= @trail.trail_type %><br>
+    </ul>
+    <br><%= link_to "Comment on this Trail!", new_trail_comment_path, data: { turbolinks: false } %></br>
+    <br><%  @trail.trail_comments.each do |p| %>
+                <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
+            <%end%>
+</div>

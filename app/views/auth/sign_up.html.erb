@@ -6,12 +6,12 @@
 <h1> Enter Your Information Here </h1>
 <%= form_for @user do |f|%>
     <br><%= f.label "Full Name" %>
-    <%= f.text_field :name %></br>
+    <%= f.text_field :name, class: "form-control" %></br>
     <br><%= f.label :username %>
-    <%= f.text_field :username %></br>
+    <%= f.text_field :username, class: "form-control" %></br>
     <br><%= f.label "New Password" %>
-    <%= f.text_field :password_digest %></br>
+    <%= f.text_field :password_digest, class: "form-control" %></br>
     <br><%= f.label :age %>
     <%= f.text_field :age %></br>
-    <br><%= f.submit %></br>
+    <br><%= f.submit class: "btn btn-primary"%></br>
 <% end %>

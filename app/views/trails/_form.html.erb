@@ -1,18 +1,18 @@
 <%= form_for @trail do |f|%>
     <br><%= f.label "Trail Photo" %>
     <%= f.file_field :trail_pic %></br>
-    <br><%= f.label :name %>
+    <br><%= f.label :name, class: "form-control" %>
     <%= f.text_field :name %></br>
     <br><%= f.label :location %>
-    <%= f.text_field :location %></br>
+    <%= f.text_field :location, class: "form-control" %></br>
     <br><%= f.label :length %>
-    <%= f.text_field :length %></br>
+    <%= f.text_field :length, class: "form-control" %></br>
     <br><%= f.label :duration %>
-    <%= f.text_field :duration %></br>
+    <%= f.text_field :duration, class: "form-control" %></br>
     <br><%= f.label :difficulty %>
-    <%= f.text_field :difficulty %></br>
+    <%= f.text_field :difficulty, class: "form-control" %></br>
     <br><%= f.label :type %>
-    <%= f.text_field :trail_type %></br>
+    <%= f.text_field :trail_type, class: "form-control" %></br>
     
-    <br><%= f.submit %>
+    <br><%= f.submit class: "btn btn-primary"%>
 <% end %>
