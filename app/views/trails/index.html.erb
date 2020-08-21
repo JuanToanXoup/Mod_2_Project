@@ -1,22 +1,27 @@
-<h1> All Trails </h1>
-<%= search_form_for @q do |f| %>
-    <%= f.label :name_cont %>
-    <%= f.search_field :name_cont%><br>
-    <%= f.label :location_cont %>
-    <%= f.search_field :location_cont%><br>
-    <%= f.label :length_cont %>
-    <%= f.search_field :length_cont %><br>
-    <%= f.label :duration_cont %>
-    <%= f.search_field :duration_cont%><br>
-    <%= f.label :difficulty_cont %>
-    <%= f.select :difficulty_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %><br>
-    <%= f.label :trail_type_cont %>
-    <%= f.search_field :trail_type_cont%><br>
-
-  
-    <%= f.submit %>
+<div class="title container">
+  <h1> Find a Trail </h1>
+  <%= search_form_for @q do |f| %>
+    <div class="thumbnail"
+      <br><%= f.label :name %>
+      <%= f.search_field :name_cont%></br>
+      <br><%= f.label :location %>
+      <%= f.search_field :location_cont%></br>
+      <br><%= f.label :length %>
+      <%= f.search_field :length_cont %></br>
+      <br><%= f.label :duration %>
+      <%= f.search_field :duration_cont%></br>
+      <br><%= f.label :difficulty %>
+      <%= f.select :difficulty_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %></br>
+      <br><%= f.label :trail_type %>
+      <%= f.search_field :trail_type_cont%></br>
+      <br><%= f.submit %></br>
+    </div>
   <% end %>
+</div>
 
+<div class="trails">
+  
+</div>
 <% @trails.each do |t| %>
     <li><%= link_to t.name, trail_path(t)%><br>
 <% end %>

@@ -11,6 +11,6 @@
     <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
     <%end%>
 <br></ul>
-<br><%= link_to "Comment on this Bike!", new_bike_comment_path, data: { turbolinks: false } %></br>
-<br><%= link_to "Bikes", bikes_path %></br>
+<br><%= link_to "Comment on this Bike!", new_bike_comment_path, data: { turbolinks: false },class: "btn btn-default" %></br>
+<br><%= link_to "Bikes", bikes_path,class: "btn btn-default" %></br>
 </ul>
