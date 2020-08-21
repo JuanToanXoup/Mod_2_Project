@@ -26,4 +26,5 @@ class User < ApplicationRecord
     validates :name, :username, :age, presence: true
     validates :username, uniqueness: true, format: { without: /\s/ ,message: "Username can not have a space."}
     validates :age, numericality: { only_integer: true, greater_than_or_equal_to: 18 }
+    
 end

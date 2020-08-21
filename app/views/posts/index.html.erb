@@ -1,4 +1,5 @@
 
+<%=link_to "Post of people you Follow", posts_following_posts_path, class: "btn btn-primary"%>
 <h2> Upcoming Meetups </h2>
 <ul>
 <% @upcoming_posts.each do |post| %>
@@ -19,3 +20,4 @@
             <br><%= post.trail.name %> on <%= post.meetup_date.strftime("%a %b, %d %Y at %I:%M%p") %></br>
         <% end %>
     </ul>
+

@@ -17,9 +17,7 @@
   <div class="user">
    <div class="thumbnail">
     <div class="caption">
-      <% if user != current_user %>
         <div style="width:100px;"><image src="<%=(url_for(user.avatar))%>" style="max-width:100%;" /></div><%= link_to user.username, user_path(user) %><br>
-      <%end%>
      </div>
     </div>
    </div>

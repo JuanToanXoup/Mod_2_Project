@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/posts/following_posts', to: 'posts#following_posts'
   resources :users
   resources :trails
   resources :bikes
@@ -21,5 +22,6 @@ Rails.application.routes.draw do
   post '/login', to: 'auth#verify'
   get '/logout', to: 'auth#logout'
   get '/sign_up', to: 'auth#sign_up'
+
 
 end

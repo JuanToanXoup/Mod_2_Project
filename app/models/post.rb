@@ -22,4 +22,5 @@ class Post < ApplicationRecord
     def self.past_post
         self.select{|p| p.meetup_date < DateTime.now}
     end
+
 end

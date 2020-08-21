@@ -1,5 +1,18 @@
 class PostsController < ApplicationController
     before_action :authorized
+    
+    def following_posts
+        @posts = []
+        current_user.followeds.each do |followeds| 
+            followeds.posts.map do |post|
+                @posts << post
+            end
+        end
+        @upcoming_posts = @posts.select{|p| p.meetup_date > DateTime.now}
+        @past_posts = @posts.select{|p| p.meetup_date < DateTime.now}
+        render :following_posts
+    end
+
     def index
         @posts = Post.all
         @upcoming_posts = @posts.upcoming_post

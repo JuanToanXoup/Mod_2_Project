@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :authorized, only: [:index,:show,:edit,:update,:destroy]
+    
     def index
         @q = User.ransack(params[:q])
         @users = @q.result(distinct: true)
