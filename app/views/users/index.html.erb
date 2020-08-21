@@ -3,6 +3,8 @@
 </div>
     
 <%= search_form_for @q do |f| %>
+    <%= f.label "Username Search" %>
+    <%= f.search_field :username_cont%><br>
     <%= f.label "Name Search" %>
     <%= f.search_field :name_cont, class: "form-control"%><br>
     <%= f.label "Skill Level" %>

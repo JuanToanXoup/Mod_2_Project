@@ -24,10 +24,10 @@
                     <%= link_to "Back to Login", login_path %>
                   <% else %>
                     <%= link_to "My Profile", user_path(current_user.id),class: "btn btn-default" %> 
-                    <%= link_to "Log Out", logout_path,class: "btn btn-default" %> 
                     <%= link_to "All Post", posts_path,class: "btn btn-default" %> 
                     <%= link_to "All Trails", trails_path,class: "btn btn-default" %>
                     <%= link_to "All Users", users_path,class: "btn btn-default" %>
+                    <%= link_to "Log Out", logout_path,class: "btn btn-default" %>
                 <% end %>
               </ul>
           </div>
