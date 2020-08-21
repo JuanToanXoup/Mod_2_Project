@@ -1,5 +1,7 @@
 
+<div class="title-container">
 <h1>All Bikes</h1>
+</div>
 <% @bikes.each do |b| %>
     <ul><li><%=link_to b.model, bike_path(b),class: "btn btn-default"%></li>
     <%=b.user.name%></ul></li>

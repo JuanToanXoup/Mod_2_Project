@@ -1,12 +1,12 @@
-<h1><%= form_for @ride do |f|%></h1>
+<%= form_for @ride do |f|%>
     <br><%= f.label "Trail" %>
-    <%= f.collection_select(:trail_id, Trail.all, :id, :name) %></br>
+    <%= f.collection_select(:trail_id, Trail.all, :id, :name)%></br>
     <br><%= f.label :experience %>
-    <%= f.text_field :experience %></br>
+    <%= f.text_field :experience, class: "form-control" %></br>
     <br><%= f.label :time %>
-    <%= f.text_field :time %></br>
+    <%= f.text_field :time, class: "form-control" %></br>
     <br><%= f.label :date %>
-    <%= f.datetime_local_field :date%></br>
+    <%= f.datetime_local_field :date, class: "form-control"%></br>
     
-    <br><%= f.submit %>
+    <br><%= f.submit class: "btn btn-primary"%>
 <% end %>

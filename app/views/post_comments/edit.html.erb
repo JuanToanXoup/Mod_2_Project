@@ -1,3 +1,5 @@
+<div class="title-container">
 <h1>Edit Comment</h1>
+</div>
 <%= render 'form', user: @post_comment %>
 <%= button_to "Delete Comment", {:controller => :post_comments, :action => 'destroy', :id => @post_comment.id}, :method => :delete %>

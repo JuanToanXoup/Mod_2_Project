@@ -4,15 +4,15 @@
     <h4 style="color: red;"> Error: <%= "#{key} #{flash[:errors][key][0]}" %> </h4>
   <% end %>
 <% end %>
-<h1><%= form_for @bike do |f|%></h1>
+<%= form_for @bike do |f|%>
     <br><%= f.label :make %>
-    <%= f.text_field :make %></br>
+    <%= f.text_field :make, class: "form-control" %></br>
     <br><%= f.label :model %>
-    <%= f.text_field :model %></br>
+    <%= f.text_field :model, class: "form-control" %></br>
     <br><%= f.label :bike_type %>
-    <%= f.text_field :bike_type %></br>
+    <%= f.text_field :bike_type, class: "form-control" %></br>
     <br><%= f.label :frame_size %>
-    <%= f.text_field :frame_size %></br>
+    <%= f.text_field :frame_size, class: "form-control" %></br>
     
-    <br><%= f.submit %>
+    <br><%= f.submit class: "btn btn-primary"%>
 <% end %>

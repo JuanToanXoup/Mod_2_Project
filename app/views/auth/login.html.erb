@@ -1,4 +1,6 @@
+<div class="title-container">
 <h1>Log In or Sign Up</h1>
+</div>
 
 <% if flash[:error] %>
     <h4 style="color: red;">
@@ -14,6 +16,10 @@
   <br><b><%= f.label :password %></b>
   <%= f.text_field :"login[password]" %></br>
 
-  <br><%= f.submit "Login" %><br></br>
+  <br><%= f.submit "Login", class: "btn btn-primary"%><br></br>
 
 <% end %>
+
+<div class="title-container">
+
+</div>

@@ -7,5 +7,39 @@
     align-items: center;
     margin-bottom: 20px;
 
-    
+    h1 {
+        margin: 0;
+    }
+}
+
+.trails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.trail {
+    width: 30%;
+    min-width: 300px;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.user {
+    width: 30%;
+    min-width: 300px;
+}
+
+.box-for-things {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-for-thing {
+    width: 30%;
+    min-width: 300px;
 }

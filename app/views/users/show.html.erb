@@ -3,19 +3,23 @@
     <image src="<%=(url_for(@user.avatar))%>" style="max-width:100%;" /> 
     </div>
 <%end%>
-
-<h1>Name: <%= @user.name %></h1>
-<ul>
-<li>Username: <%= @user.username %><br>
-<li>Age: <%= @user.age %><br>
-<li>Skill Level: <%= @user.skill_level %><br>
-<li>Address: <%= @user.address %><br>
-<li>Bikes</br>   
-<%@user.bikes.each do |b|%> 
-    <ul><li><%= link_to b.model, bike_path(b) %></br></li></ul> 
-    
-<%end%><br>
-</ul>
+<div class="box-for-things">
+    <h1>Name: <%= @user.name %></h1>
+</div>
+<div class="box-for-thing">
+    <div class="thumbnail">
+        <div class="caption">
+            <li>Username: <%= @user.username %><br>
+            <li>Age: <%= @user.age %><br>
+            <li>Skill Level: <%= @user.skill_level %><br>
+            <li>Address: <%= @user.address %><br>
+            <li>Bikes</br>
+            <%@user.bikes.each do |b|%> 
+                <ul><li><%= link_to b.model, bike_path(b) %></br></li></ul> 
+            <%end%><br>
+        </div>
+    </div>
+</div>
 
 <% flash[:ids] = {followed_id: @user.id}%>
 <% if @user == current_user %>

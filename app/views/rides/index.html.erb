@@ -1,8 +1,11 @@
-<h1><center>Your Ride History</h1></center>
-
-<% @user.rides.each do |r| %>
-    <li><%= r.trail.name %></li>
-    <br><ul>Date:<%= r.date %>
-    <br>Time:<%= r.time %>
-    <br>Experience:<%= r.experience %></ul>
-<%end%>
+<div class="title-container">
+<h1>Your Ride History</h1>
+</div>
+<div class="box-for-things">
+    <% @user.rides.each do |r| %>
+        <br><b><%= r.trail.name %></b>
+        <br>Date:<%= r.date %>
+        <br>Time:<%= r.time %>
+        <br>Experience:<%= r.experience %></ul>
+    <%end%>
+</div>

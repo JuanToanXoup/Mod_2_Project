@@ -1,20 +1,21 @@
 <div class="title container">
-  <h1> Find a Trail </h1>
+<h1> Find a Trail </h1>
+</div>
   <%= search_form_for @q do |f| %>
     <div class="thumbnail"
       <br><%= f.label :name %>
-      <%= f.search_field :name_cont%></br>
+      <%= f.search_field :name_cont, class: "form-control"%></br>
       <br><%= f.label :location %>
-      <%= f.search_field :location_cont%></br>
+      <%= f.search_field :location_cont, class: "form-control"%></br>
       <br><%= f.label :length %>
-      <%= f.search_field :length_cont %></br>
+      <%= f.search_field :length_cont, class: "form-control" %></br>
       <br><%= f.label :duration %>
-      <%= f.search_field :duration_cont%></br>
+      <%= f.search_field :duration_cont, class: "form-control"%></br>
       <br><%= f.label :difficulty %>
-      <%= f.select :difficulty_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %></br>
+      <%= f.select :difficulty_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']], class: "form-control" %></br>
       <br><%= f.label :trail_type %>
-      <%= f.search_field :trail_type_cont%></br>
-      <br><%= f.submit %></br>
+      <%= f.search_field :trail_type_cont, class: "form-control"%></br>
+      <br><%= f.submit class: "btn btn-primary" %></br>
     </div>
   <% end %>
 </div>
@@ -22,7 +23,17 @@
 <div class="trails">
   
 </div>
-<% @trails.each do |t| %>
-    <li><%= link_to t.name, trail_path(t)%><br>  
-    <div style="width:200px;"><image src="<%=(url_for(t.trail_pic))%>" style="max-width:100%;" /></div><br>
-<% end %>
+<div class="trail">
+  <% @trails.each do |t| %>
+    <div class="trail>
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= link_to t.name, trail_path(t)%></h3>
+          <p><%= t.location %></p>
+          <div style="width:200px;"><image src="<%=(url_for(t.trail_pic))%>" 
+          style="max-width:100%;" /></div><br>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
