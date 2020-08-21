@@ -7,6 +7,14 @@ GIT
       activesupport (>= 5.2.1)
       i18n
 
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: 35ec5ed4e8a7f7477a6583a8de9a70256d4192a2
+  branch: master
+  specs:
+    faker (2.13.0)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -139,7 +147,7 @@ GEM
     public_suffix (4.0.5)
     puma (4.3.5)
       nio4r (~> 2.0)
-    puma (4.3.5-java)
+    puma (4.1-java)
       nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -251,6 +259,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.4.1)
   byebug
   capybara (>= 2.15)
+  faker!
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)

@@ -24,7 +24,14 @@ class PostCommentsController < ApplicationController
     def update
         find_post_comment
         @post_comment.update(comment_params)
-        redirect_to post_path(@post_comment.post_id)
+        redirect_to post_path(@post_comment.post)
+    end
+
+    def destroy
+        find_post_comment
+        post = @post_comment.post
+        @post_comment.destroy
+        redirect_to post_path(post)
     end
 
     private

@@ -32,7 +32,7 @@ class TrailsController < ApplicationController
     def update
         find_trail
         @trail.update(trail_params)
-        redirect_to trail_path(@trial)
+        redirect_to trail_path(@trail)
     end
 
     def destroy

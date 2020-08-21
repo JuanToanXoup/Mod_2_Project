@@ -2,7 +2,11 @@
 class AuthController < ApplicationController
 
     def login
-      render :login
+      if current_user
+        redirect_to user_path(current_user)
+      else
+        render :login
+      end
     end
 
     def sign_up

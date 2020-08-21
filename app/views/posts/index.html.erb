@@ -1,18 +1,21 @@
 
-<h2> Upcoming Posts </h2>
+<h2> Upcoming Meetups </h2>
 <ul>
 <% @upcoming_posts.each do |post| %>
-    <br><li><%= link_to post.title, post_path(post) %> -- <%= post.user.name %></br>
-    <br><%= post.trail.name %>---<%= post.meetup_date %></br>
+    <li><%= link_to post.title, post_path(post) %> on <%= post.meetup_date.strftime("%a %b, %d %Y at %I:%M%p") %><br>
+    <%= post.trail.name %><br>
+    <div style="width:200px;"><image src="<%=(url_for(post.trail.trail_pic))%>" style="max-width:100%;" /></div><br>
+    <div style="width:50px;"><image src="<%=(url_for(post.user.avatar))%>" style="max-width:100%;" /></div> - <%= link_to post.user.username, user_path(post.user)%>
 <% end %>
 </ul>
 <br>
 <ul><%= link_to "New Post", new_post_path, data: { turbolinks: false } %></ul>
 <br>
-<h2> Past Posts </h2>
+<h2> Past Meetups </h2>
     <ul>
         <% @past_posts.each do |post| %>
             <br><li><%= link_to post.title, post_path(post) %> -- <%= post.user.name %></br>
-            <br><%= post.trail.name %>---<%= post.meetup_date %></br>
+            <div style="width:200px;"><image src="<%=(url_for(post.trail.trail_pic))%>" style="max-width:100%;" /></div><br>
+            <br><%= post.trail.name %> on <%= post.meetup_date.strftime("%a %b, %d %Y at %I:%M%p") %></br>
         <% end %>
     </ul>

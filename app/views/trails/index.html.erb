@@ -23,5 +23,6 @@
   
 </div>
 <% @trails.each do |t| %>
-    <li><%= link_to t.name, trail_path(t)%><br>
+    <li><%= link_to t.name, trail_path(t)%><br>  
+    <div style="width:200px;"><image src="<%=(url_for(t.trail_pic))%>" style="max-width:100%;" /></div><br>
 <% end %>

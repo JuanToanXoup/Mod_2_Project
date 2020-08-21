@@ -1,17 +1,33 @@
 <% flash[:id] = @post.id %>
 
 <h2><%= @post.title %></h2>
-<ul>
-
-<br><li><b><%= link_to "#{@post.trail.name}", trail_path(@post.trail_id) %></b></br>
-<br><li><b><%= @post.meetup_date %></b></br>
-<br><li><b><%= @post.description %></b></br>
-<br>
-<ul><br><% @post.post_comments.each do |p| %>
-    <li><%=p.user.name%><ul><%= p.description %></li><br></ul>
+    <%if @post.user == current_user%>
+        <%= link_to "Edit Post", edit_post_path, data: { turbolinks: false }  %>
     <%end%>
+<div style="width:1000px;"><image src="<%=(url_for(@post.trail.trail_pic))%>" style="max-width:100%;" /></div><br>
+<%= link_to "#{@post.trail.name}", trail_path(@post.trail_id) %><br>
+<%= @post.meetup_date.strftime("%a %b, %d %Y at %I:%M%p") %><br>
+<%= @post.description %><br>
+<div style="width:50px;"><image src="<%=(url_for(@post.user.avatar))%>" style="max-width:100%;"></div> - <%= link_to @post.user.username, user_path(@post.user)%><br>
+<div>
+
+<h3>Comments</h3>
+<ul>
+<% @post.post_comments.each do |p| %>
+    <li><div style="width:50px;"><image src="<%=(url_for(p.user.avatar))%>" style="max-width:100%;"></div><%= link_to p.user.username, user_path(p.user)%> - <%= p.description %><br>
+    <%if p.user == current_user%>
+        <%= link_to "Edit Comment", edit_post_comment_path(p), data: { turbolinks: false }  %>
+    <%end%>
+<<<<<<< HEAD
+<%end%>
+=======
 <br></ul>
 <br><%= link_to "Comment on this Post!", new_post_comment_path, data: { turbolinks: false } %></br>
 <%= button_to "Delete Post", {:controller => :posts, :action => 'destroy', :id => @post.id, :method => :delete} %>
 <br><%= link_to "Posts", posts_path %></br>
+>>>>>>> 71615eccb5263059b0e5a8739ab8ac57bbd9273a
 </ul>
+</div>
+<%= link_to "Comment", new_post_comment_path, data: { turbolinks: false } %>
+
+
