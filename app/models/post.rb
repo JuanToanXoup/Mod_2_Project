@@ -6,6 +6,7 @@ class Post < ApplicationRecord
     has_many    :post_likes
 
     validates :user_id, :trail_id, :title, :description, :meetup_date, presence: true
+<<<<<<< HEAD
     validate :post_date_after_current_date
 
     def post_date_after_current_date
@@ -14,6 +15,9 @@ class Post < ApplicationRecord
           errors.add(:meetup_date, "Must be after the Current Time")
         end
     end
+=======
+    
+>>>>>>> 71615eccb5263059b0e5a8739ab8ac57bbd9273a
 
     def self.upcoming_post
         self.select{|p| p.meetup_date > DateTime.now}

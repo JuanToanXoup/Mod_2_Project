@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>BikeHouston</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
+<<<<<<< HEAD
   <body>
   <header>
       <h1><center>BikeHouston</center></h1>
@@ -26,4 +27,39 @@
   <% end %>
     <%= yield %>
   </body>
+=======
+    <body>
+      <header class="container">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar header">
+              <h1><b> BikeHouston </b></h1>
+            </div>
+
+              <ul class="container">
+                <% if controller_name == 'auth' && action_name == 'login'%>
+                    <%= link_to "Create a New Account", sign_up_path, class: "btn btn-default" %> 
+                  <% elsif controller_name == 'auth' && action_name == 'sign_up' %>
+                    <%= link_to "Back to Login", login_path %>
+                  <% else %>
+                    <%= link_to "My Profile", user_path(current_user.id),class: "btn btn-default" %> 
+                    <%= link_to "Log Out", logout_path,class: "btn btn-default" %> 
+                    <%= link_to "All Post", posts_path,class: "btn btn-default" %> 
+                    <%= link_to "All Trails", trails_path,class: "btn btn-default" %>
+                    <%= link_to "All Users", users_path,class: "btn btn-default" %>
+                <% end %>
+              </ul>
+          </div>
+        </nav>
+      </header>
+      <section class="container">
+        <div>
+        </div>
+        <%= yield %>
+      </section>
+    </body>
+  <footer class="container">
+  <p1>Made by John Doan and Ed Gonzalez</p1> 
+  </footer>
+>>>>>>> 71615eccb5263059b0e5a8739ab8ac57bbd9273a
 </html>

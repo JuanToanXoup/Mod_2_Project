@@ -1,4 +1,4 @@
-<h1>This is Login page</h1>
+<h1>Log In or Sign Up</h1>
 
 <% if flash[:error] %>
     <h4 style="color: red;">
@@ -8,12 +8,12 @@
 
 <%= form_with url: '/login', method: :post do |f| %>
 
-  <%= f.label :username %>
-  <%= f.text_field :"login[username]" %>
+  <br><b><%= f.label :username %></b>
+  <%= f.text_field :"login[username]" %></br>
 
-  <%= f.label :password %>
-  <%= f.text_field :"login[password]" %>
+  <br><b><%= f.label :password %></b>
+  <%= f.text_field :"login[password]" %></br>
 
-  <%= f.submit "Login" %><br>
+  <br><%= f.submit "Login" %><br></br>
 
 <% end %>
