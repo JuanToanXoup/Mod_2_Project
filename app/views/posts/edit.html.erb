@@ -1,2 +1,3 @@
 <h1>Edit Post</h1>
 <%= render 'form', user: @post %>
+<%= button_to "Delete Post", {:controller => :posts, :action => 'destroy', :id => @post.id}, :method => :delete %>

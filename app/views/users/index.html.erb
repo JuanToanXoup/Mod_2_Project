@@ -1,6 +1,13 @@
 <h1> All Users </h1>
+<%= search_form_for @q do |f| %>
+    <%= f.label "Name Search" %>
+    <%= f.search_field :name_cont%><br>
+    <%= f.label "Skill Level" %>
+    <%= f.select :skill_level_cont, [[nil],['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %><br>
+    <%= f.submit %>
+  <% end %>
 <% @users.each do |user| %>
     <% if user != current_user %>
-        <div style="width:100px;"><image src="<%=(url_for(user.avatar))%>" style="max-width:100%;" /></div><%= link_to user.name, user_path(user) %><br>
+        <div style="width:100px;"><image src="<%=(url_for(user.avatar))%>" style="max-width:100%;" /></div><%= link_to user.username, user_path(user) %><br>
     <%end%>
 <% end %>

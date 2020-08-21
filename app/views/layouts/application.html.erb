@@ -19,10 +19,10 @@
     <%= link_to "Back to Login", login_path %>
   <% else %>
     <%= link_to "My Profile", user_path(current_user.id) %> 
-    <%= link_to "Log Out", logout_path %> 
     <%= link_to "All Post", posts_path %> 
     <%= link_to "All Trails", trails_path %>
     <%= link_to "All Users", users_path %>
+    <%= link_to "Log Out", logout_path %> 
   <% end %>
     <%= yield %>
   </body>
