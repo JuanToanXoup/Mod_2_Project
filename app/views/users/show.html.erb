@@ -1,12 +1,15 @@
+
 <% if @user.avatar.attached? %>
     <div style="width:250px;"> 
     <image src="<%=(url_for(@user.avatar))%>" style="max-width:100%;" /> 
     </div>
 <%end%>
+
 <div class="box-for-things">
     <h1>Name: <%= @user.name %></h1>
 </div>
-<div class="box-for-thing">
+<div class="wrapper">
+<div class="box-for-thing-left">
     <div class="thumbnail">
         <div class="caption">
             <li>Username: <%= @user.username %><br>
@@ -19,7 +22,6 @@
             <%end%><br>
         </div>
     </div>
-</div>
 
 <% flash[:ids] = {followed_id: @user.id}%>
 <% if @user == current_user %>
@@ -32,25 +34,28 @@
     <%= button_to "Add a Trail to your History", "/users/#{@user.id}/rides/new", method: :get %>
     <br>
     <%= button_to "View History", rides_path, method: :get %>
-<% elsif @user.followers.exclude?(current_user) %>
-
+    <br>
+    <%= button_to "Make a new Post", posts_path, method: :get%>
+    <% elsif @user.followers.exclude?(current_user) %>
     <%= button_to "Follow User", new_friend_path, method: :get %>
-<% else %>
+    <% else %>
     <%= button_to "Unfollow User", edit_friend_path(Friend.find_by(follower_id: current_user.id, followed_id: @user.id)), method: :get %>
-<% end %>
-<h2>Following <%=@user.followeds.count%></h2>
-    <% if !@user.followeds.empty? %>
-        <% @user.followeds.each do |friend| %>
-                <div style="width:100px;"><image src="<%=(url_for(friend.avatar))%>" style="max-width:100%;" /></div><%= link_to friend.username, user_path(friend) %><br>
+    <% end %>
+</div>
+<div class="box-for-thing-right">
+    <h2>Following <%=@user.followeds.count%></h2>
+        <% if !@user.followeds.empty? %>
+            <% @user.followeds.each do |friend| %>
+                    <div style="width:100px;"><image src="<%=(url_for(friend.avatar))%>" style="max-width:100%;" /></div><%= link_to friend.username, user_path(friend) %><br>
+            <%end%>
+        <%else%>
+            <%= link_to "Find People to Follow", users_path %>
         <%end%>
-    <%else%>
-        <%= link_to "Find People to Follow", users_path %>
-    <%end%>
+</div>
 <h2><%=@user.followers.count%> Followers</h2>
     <% if !@user.followers.empty? %>
         <% @user.followers.each do |friend| %>
             <div style="width:100px;"><image src="<%=(url_for(friend.avatar))%>" style="max-width:100%;" /></div><%= link_to friend.username, user_path(friend) %><br>
         <% end %>
-    <%else%>
-        <%= link_to "Make a new Post", posts_path %>
     <%end%>
+</div>
