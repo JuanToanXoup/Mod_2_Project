@@ -18,14 +18,11 @@
     <%if p.user == current_user%>
         <%= link_to "Edit Comment", edit_post_comment_path(p), data: { turbolinks: false }  %>
     <%end%>
-<<<<<<< HEAD
 <%end%>
-=======
 <br></ul>
 <br><%= link_to "Comment on this Post!", new_post_comment_path, data: { turbolinks: false } %></br>
 <%= button_to "Delete Post", {:controller => :posts, :action => 'destroy', :id => @post.id, :method => :delete} %>
 <br><%= link_to "Posts", posts_path %></br>
->>>>>>> 71615eccb5263059b0e5a8739ab8ac57bbd9273a
 </ul>
 </div>
 <%= link_to "Comment", new_post_comment_path, data: { turbolinks: false } %>

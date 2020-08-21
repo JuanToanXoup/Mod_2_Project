@@ -23,7 +23,13 @@ juantoanxoup = User.create(username: "Juantoanxoup",name: 'John', age: 27, skill
         address: Faker::Address.full_address,
         password_digest: "password"
     })
-  end
+end
+50.times do 
+    Friend.create({
+        follower_id: rand(1..30),
+        followed_id: rand(1..30)
+    })
+end
 Bike.create(make: 'Cougar', model: 't-1000', bike_type: 'Mountain', frame_size: 'Large', tire_size: '32 inch', user_id: edge.id)
 Bike.create(make: 'Lion', model: 'z-1000', bike_type: 'Cross-Country', frame_size: 'X-Large', tire_size: '48 inch', user_id: juantoanxoup.id)
 
