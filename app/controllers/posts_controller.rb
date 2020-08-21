@@ -17,7 +17,7 @@ class PostsController < ApplicationController
             @post.save
             redirect_to post_path(@post)
         else
-            flash[:messages] = @post.errors.messages
+            flash[:errors] = @post.errors.messages
             redirect_to new_post_path
         end
     end
@@ -37,7 +37,9 @@ class PostsController < ApplicationController
     end
 
     def destroy
-
+        find_post
+        @post.destroy
+        redirect_to posts_path
     end
 
     private 

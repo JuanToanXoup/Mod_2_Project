@@ -1,15 +1,15 @@
 <%= form_for @user do |f|%>
-    <%= f.label "Profile Photo" %>
+    <br><%= f.label "Profile Photo" %>
     <%= f.file_field :avatar %><br>
-    <%= f.label "Username" %>
+    <br><%= f.label "Username" %>
     <%= f.text_field :username %><br>
-    <%= f.label :name %>
+    <br><%= f.label :name %>
     <%= f.text_field :name %><br>
-    <%= f.label :age %>
+    <br><%= f.label :age %>
     <%= f.text_field :age %><br>
-    <%= f.label :skill_level %>
+    <br><%= f.label :skill_level %>
     <%= f.select :skill_level, [['Beginner','beginner'],['Intermediate','intermediate'],['Expert','expert']] %><br>
-    <%= f.label :address %><br>
+    <br><%= f.label :address %><br>
     <%= f.text_area :address, size: "15x5"%><br>
-    <%= f.submit %>
+    <br><%= f.submit %>
 <% end %>

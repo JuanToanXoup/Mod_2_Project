@@ -12,7 +12,8 @@
 <li>Address: <%= @user.address %><br>
 <li>Bikes</br>   
 <%@user.bikes.each do |b|%> 
-    <ul><%= b.model %></br></ul> 
+    <ul><li><%= link_to b.model, bike_path(b) %></br></li></ul> 
+    
 <%end%><br>
 </ul>
 

@@ -5,6 +5,9 @@ class Post < ApplicationRecord
     has_many    :users,     through:    :post_comments
     has_many    :post_likes
 
+    validates :user_id, :trail_id, :title, :description, :meetup_date, presence: true
+    
+
     def self.upcoming_post
         self.select{|p| p.meetup_date > DateTime.now}
     end
